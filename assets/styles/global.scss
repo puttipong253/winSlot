@@ -1,0 +1,11 @@
+@import "tailwind";
+@import "tailwind";
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap');
+
+html, body {
+  font-family: 'Prompt', sans-serif !important;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    background: #FF4359;
+}
