@@ -1,26 +1,5 @@
 <template>
     <div>
-        <div class='mb-[2rem] md:mb-[3rem]'>
-            <div class='text-gradient text-4xl md:text-5xl font-bold italic py-2 text-center'>
-                รวมเกมส์ชั้นนำ
-            </div>
-            <div class='text-2xl md:text-3xl text-white text-center font-normal mt-2 md:mt-4'>
-                เล่นเกมส์ พร้อมลุ้นรับของรางวัลมากมาย
-            </div>
-            <div class='flex justify-center mt-6 md:mt-8'>
-                <button
-                    class='flex items-center bg-gradient-to-b from-gold-1 to-gold-2 py-1 md:py-2 px-4 md:px-10 border-2 border-white text-white rounded-full font-light text-sm md:text-xl shadow-gold'>
-                    <svg-icon
-                        name='heroicons-solid_user-group'
-                        class='w-[20px] h-[20px] md:w-[30px] md:h-[30px] '
-                    />
-                    <span class='ml-3'>
-                        สมัครสมาชิก
-                    </span>
-                </button>
-            </div>
-        </div>
-
         <client-only>
             <swiper class='swiper' :options='swiperOption'>
                 <swiper-slide v-for='(item,index) in banner' :key='index'>
@@ -31,18 +10,70 @@
             </swiper>
         </client-only>
 
-        <div class='bg-gray-2 mt-5 md:mt-[3rem]'>
-            <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-7 text-white'>
-                <div v-for='(items,index) in service' :key='index' class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
-                    <img :src='items.image' alt='' class='mx-auto'>
-                    <div class='mt-5 text-xl font-medium'>{{items.title}}</div>
-                    <div class='mt-4 text-base'>{{items.content}}</div>
+        <div class='mt-5 lg:mt-7 xl:mt-12'>
+            <div class='flex flex-col-reverse sm:flex-row sm:justify-between py-3'>
+                <div class='text-white text-3xl md:text-4xl text-center'>
+                    ยอดเงิน ของคุณ
+                </div>
+                <button
+                    class='flex justify-center items-center bg-gradient-to-b from-gold-1 to-gold-2 px-10 py-1 text-xl text-white rounded-full mb-5 sm:mb-0'>
+                    <svg-icon
+                        name='ri_gamepad-fill'
+                        width='35'
+                        height='35'
+                    />
+                    <span class='ml-3'>เข้าเล่นเกมส์</span>
+                </button>
+            </div>
+
+            <div class='flex flex-col sm:flex-row justify-between py-0 sm:py-3'>
+                <div class='flex items-center justify-center'>
+                    <div class='text-yellow text-gradient text-xl sm:text-3xl mr-4 font-medium'>
+                        ฿ {{ addComma(user.price.toFixed(2)) }}
+                    </div>
+                    <div class='cursor-pointer'>
+                        <svg-icon
+                            name='circle'
+                            width='28'
+                            height='28'
+                        />
+                    </div>
+                </div>
+
+                <div class='flex items-center justify-center mt-5 sm:mt-0'>
+                    <div class='flex items-center h-7 px-1 border-2 border-gray-1 rounded-full bg-gray-1 mr-2'>
+                        <button class='bg-gradient-to-b from-gold-1 to-gold-2 rounded-full text-white text-[12px] px-2'>
+                            ถุงเงิน
+                        </button>
+                        <span class='text-white ml-2 text-[12px]'>฿ {{ addComma(user.bag.toFixed(2)) }}</span>
+                    </div>
+                    <div class='flex items-center border-2 border-[#3A3A3A] h-7 px-3 rounded-full'>
+                        <svg-icon
+                            name='fa_diamond'
+                            width='15'
+                            height='15'
+                        />
+                        <span class='text-white ml-2 text-[12px]'>{{ addComma(user.diamond.toFixed(2)) }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class='mt-5 lg:mt-7 xl:mt-[3rem]'>
-            <div class='text-white'>
+            <div class='grid grid-cols-4 sm:grid-cols-2 xl:grid-cols-4 gap-x-2 gap-y-7 md:gap-x-6 md:gap-y-12 mt-7'>
+                <div v-for='(item,index) in menu' :key='index'
+                     class='border border-gray-1 text-gray-1 rounded-lg flex justify-center py-6 md:py-14 relative cursor-pointer transform transition duration-300 ease-in-out hover:-translate-y-3 hover:text-[#dca93d] hover:border-[#dca93d]'>
+                    <svg-icon
+                        :name='item.icon'
+                        class='w-[35px] h-[35px] md:w-[100px] md:h-[100px] xl:w-[140px] xl:h-[140px]'
+                    />
+                    <div class='absolute -bottom-3 sm:-bottom-6'>
+                        <button class='text-white bg-gray-1 text-[11px] md:text-sm md:text-xl rounded-full px-2 py-1 md:px-7 md:py-2 hov'>
+                            {{ item.name }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class='text-white mt-[3rem] md:mt-[5rem]'>
                 <div class='text-2xl md:text-3xl pb-[10px] md:pb-[20px]'>
                     บัญชีเกมส์ ของเรา
                 </div>
@@ -105,10 +136,10 @@
                             <img :src='items.image' alt='' class='w-full'>
                             <div class='py-3 px-3'>
                                 <div class='text-lg md:text-xl'>
-                                    {{ items.title }}
+                                    {{items.title}}
                                 </div>
                                 <div class='text-sm md:text-base font-light'>
-                                    {{ items.subTitle }}
+                                    {{items.subTitle}}
                                 </div>
                             </div>
                         </div>
@@ -133,10 +164,10 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import global from '../mixins/global'
+import global from '../../mixins/global'
 
 export default {
-    layout: 'default',
+    layout: 'home',
     mixins: [global],
     components: {
         Swiper,
@@ -149,63 +180,82 @@ export default {
                 price: 10000,
                 diamond: 0
             },
-            banner: [
+            menu: [
                 {
-                    image: require('../assets/image/slot1.png')
+                    icon: 'clarity_wallet-line',
+                    name: 'เติมเงิน',
+                    path: ''
                 },
                 {
-                    image: require('../assets/image/slot1.png')
+                    icon: 'fluent_person-money-24-regular',
+                    name: 'ถอนเงิน',
+                    path: ''
+                },
+                {
+                    icon: 'healthicons_coins-outline',
+                    name: 'โยกเงิน',
+                    path: ''
+                },
+                {
+                    icon: 'clarity_coin-bag-line',
+                    name: 'คืนยอดเสีย',
+                    path: ''
+                },
+                {
+                    icon: 'octicon_gift-24',
+                    name: 'โปรโมชัน',
+                    path: ''
+                },
+                {
+                    icon: 'carbon_ai-status-in-progress',
+                    name: 'สร้างรายได้',
+                    path: ''
+                },
+                {
+                    icon: 'la_user-cog',
+                    name: 'ติดต่อแอดมิน',
+                    path: ''
+                },
+                {
+                    icon: 'fluent_textbox-more-24-regular',
+                    name: 'เพิ่มเติม',
+                    path: ''
                 }
             ],
-            service: [
+            banner: [
                 {
-                    image: require('../assets/image/purse 1.png'),
-                    title: 'ฝาก-ถอน รวดเร็ว',
-                    content: 'ฝาก-ถอน เร็ว\n' +
-                        'การันตีเรื่องเวลา ไม่มีการล่าช้า\n' +
-                        'ทำรายการได้ 24 ชั่วโมง'
+                    image: require('../../assets/image/slot1.png')
                 },
-                {
-                    image: require('../assets/image/24-hours 1.png'),
-                    title: 'บริการลูกค้า 24ชั่วโมง',
-                    content: 'บริการด้วยใจ\n' +
-                        'มีความเป็นมืออาชีพ\n' +
-                        'แสตนบาย 24 ชั่วโมง'
-                },
-                {
-                    image: require('../assets/image/shield 1.png'),
-                    title: 'มั่นคง แน่นอน',
-                    content: 'ไม่มีลิมิตต่อวัน\n' +
-                        'จ่ายจริง\n' +
-                        'การันตีด้วยฐานลูกค้า ทั่วโลก'
-                }
+                // {
+                //     image: require('../assets/image/50825.jpg')
+                // }
             ],
             event: [
                 {
-                    image: require('../assets/image/slot-5.png'),
+                    image: require('../../assets/image/slot-5.png'),
                     title: 'VIP เครดิตหมดกดรับที่นี',
                     subTitle: 'ไม่จำกัด รับแล้ว 48 ท่าน'
                 },
                 {
-                    image: require('../assets/image/slot-6.png'),
+                    image: require('../../assets/image/slot-6.png'),
                     title: 'VIP เครดิตหมดกดรับที่นี',
                     subTitle: 'ไม่จำกัด รับแล้ว 48 ท่าน'
                 },
                 {
-                    image: require('../assets/image/slot-7.png'),
+                    image: require('../../assets/image/slot-7.png'),
                     title: 'VIP เครดิตหมดกดรับที่นี',
                     subTitle: 'ไม่จำกัด รับแล้ว 48 ท่าน'
                 }
             ],
             game: [
                 {
-                    image: require('../assets/image/slot-2.png')
+                    image: require('../../assets/image/slot-2.png')
                 },
                 {
-                    image: require('../assets/image/slot-3.png')
+                    image: require('../../assets/image/slot-3.png')
                 },
                 {
-                    image: require('../assets/image/slot-4.png')
+                    image: require('../../assets/image/slot-4.png')
                 }
             ],
             swiperOption: {
