@@ -26,6 +26,7 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
+        '~/plugins/vee-validate.js',
         { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
     ],
 
@@ -43,14 +44,16 @@ export default {
     buildModules: [
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
-        '@nuxtjs/svg-sprite'
+        '@nuxtjs/svg-sprite',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        transpile: ['vee-validate/dist/rules'],
+    },
 
     env: {
         baseName: process.env.baseName

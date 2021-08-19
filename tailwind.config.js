@@ -7,7 +7,45 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            keyframes: {
+                'fade-ping': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'scale(0)'
+                    },
+                    // '100%': {
+                    //     opacity: '1',
+                    //     transform: 'scale(0)'
+                    // },
+                },
+                'fade-in-up': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateY(30px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    },
+                },
+                'fade-in-right': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateX(-30px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateX(0)'
+                    },
+                },
+            },
+            animation: {
+                'fade-ping': 'fade-ping 0.2s ease-out',
+                'fade-in-up': 'fade-in-up 1s ease-out',
+                'fade-in-right': 'fade-in-right 1s ease-out',
+            },
+        },
         boxShadow: {
             sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
             DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
@@ -29,6 +67,7 @@ module.exports = {
             'gray-2': 'rgba(255, 255, 255, 0.05)',
             'gold-1' : '#BE7A22',
             'gold-2' : '#FFCF5A',
+            'black': '#000000',
             'black-1' : '#111111',
         },
         screens: {

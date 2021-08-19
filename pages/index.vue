@@ -18,7 +18,18 @@
                         สมัครสมาชิก
                     </span>
                 </button>
+
+                <div class='absolute right-0 -mt-2 md:mt-0'>
+                    <button
+                        class='bg-gradient-to-b from-gold-1 to-gold-2 p-3 text-white rounded-l-md'>
+                        <svg-icon
+                            name='line'
+                            class='w-[20px] h-[20px] md:w-[30px] md:h-[30px]'
+                        />
+                    </button>
+                </div>
             </div>
+
         </div>
 
         <client-only>
@@ -61,7 +72,7 @@
                         </button>
                     </div>
                 </div>
-                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-10'>
+                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-7'>
                     <div v-for='(items,index) in game' :key='index' class='flex justify-center'>
                         <img :src='items.image' alt='' class='w-full'>
                     </div>
@@ -99,7 +110,7 @@
                         </button>
                     </div>
                 </div>
-                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-10'>
+                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-7'>
                     <div v-for='(items,index) in event' :key='index' class='flex justify-center'>
                         <div class='w-full h-full bg-[#1A1A1A] rounded-md'>
                             <img :src='items.image' alt='' class='w-full'>
