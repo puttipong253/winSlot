@@ -9,6 +9,7 @@
             </div>
             <div class='flex justify-center mt-6 md:mt-8'>
                 <button
+                    @click='showModal = true'
                     class='flex items-center bg-gradient-to-b from-gold-1 to-gold-2 py-1 md:py-2 px-4 md:px-10 border-2 border-white text-white rounded-full font-light text-sm md:text-xl shadow-gold'>
                     <svg-icon
                         name='heroicons-solid_user-group'
@@ -19,7 +20,7 @@
                     </span>
                 </button>
 
-                <div class='absolute right-0 -mt-2 md:mt-0'>
+                <div class='absolute right-2 -mt-2 md:mt-0'>
                     <button
                         class='bg-gradient-to-b from-gold-1 to-gold-2 p-3 text-white rounded-l-md'>
                         <svg-icon
@@ -29,8 +30,9 @@
                     </button>
                 </div>
             </div>
-
         </div>
+
+        <Register @modal='setModal' v-if='showModal' />
 
         <client-only>
             <swiper class='swiper' :options='swiperOption'>
@@ -42,7 +44,7 @@
             </swiper>
         </client-only>
 
-        <div class='bg-gray-2 mt-5 md:mt-[3rem]'>
+        <div class='mt-5 md:mt-[3rem]'>
             <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-7 text-white'>
                 <div v-for='(items,index) in service' :key='index' class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
                     <img :src='items.image' alt='' class='mx-auto'>
@@ -145,16 +147,18 @@
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import global from '../mixins/global'
-
+import Register from '../components/register'
 export default {
     layout: 'default',
     mixins: [global],
     components: {
         Swiper,
-        SwiperSlide
+        SwiperSlide,
+        Register
     },
     data() {
         return {
+            showModal: false,
             user: {
                 bag: 0,
                 price: 10000,
@@ -229,6 +233,12 @@ export default {
                     clickable: true
                 }
             }
+        }
+    },
+
+    methods : {
+        setModal(value) {
+            this.showModal = value
         }
     }
 }

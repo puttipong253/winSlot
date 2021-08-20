@@ -69,6 +69,7 @@ module.exports = {
             'gold-2' : '#FFCF5A',
             'black': '#000000',
             'black-1' : '#111111',
+            'gray-3': 'rgba(36, 36, 36, 0.4)'
         },
         screens: {
             'sm': '640px',

@@ -28,6 +28,7 @@ export default {
     plugins: [
         '~/plugins/vee-validate.js',
         { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
+        { src: '~/plugins/vue-select.js', ssr: false },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

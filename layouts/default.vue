@@ -7,21 +7,21 @@
                     <div class='cursor-pointer'>
                         <img src='../assets/image/logo.png' alt='' class='w-[60px] h-[60px] md:w-[75px] md:h-[75px]'>
                     </div>
-                    <div class='flex items-center text-base text-white'>
-                        <div class='mr-7 cursor-pointer hidden md:block'>
+                    <div class='flex items-center'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('events')">
                             กิจกรรม
                         </div>
-                        <div class='mr-7 cursor-pointer hidden md:block'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('randomCard')">
                             เปิดไพ่
                         </div>
-                        <div class='mr-7 cursor-pointer hidden md:block'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
                             โปรโมชั่น
                         </div>
-                        <div class='mr-7 cursor-pointer hidden md:block'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
                             ติดต่อเรา
                         </div>
                         <button
-                            class='bg-gradient-to-b font-light from-gold-1 to-gold-2 px-7 py-1 rounded-full'
+                            class='text-xs md:text-base text-white bg-gradient-to-b font-light from-gold-1 to-gold-2 px-7 py-1 rounded-full'
                             @click='toggleModal = !toggleModal'
                         >
                             เข้าสู่ระบบ
@@ -29,120 +29,116 @@
                     </div>
                 </div>
 
-                <div v-if='toggleModal' class='absolute inset-0 z-40 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
-                    <div
-                        class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
-                        <div class='relative mx-auto'>
-                            <div class='bg-[#1E1E1E] w-[30rem] rounded-lg px-7 py-4'>
-                                <div class='flex justify-between items-center mb-6'>
-                                    <div class='text-xl flex items-center'>
-                                        <div @click='toggleModal = !toggleModal' class='cursor-pointer'>
+                <div v-if='toggleModal'>
+                    <div v-if="loginStatus === 'login'"
+                         class='absolute inset-0 z-40 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
+                        <div
+                            class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
+                            <div class='relative mx-auto'>
+                                <div class='bg-[#1E1E1E] w-full md:w-[30rem] rounded-lg px-7 py-4'>
+                                    <div class='flex justify-between items-center mb-6'>
+                                        <div class='text-2xl flex items-center'>
+                                            <!--                                        <div @click='closeModal' class='cursor-pointer'>-->
+                                            <!--                                            <svg-icon-->
+                                            <!--                                                name='eva_arrow-back-fill'-->
+                                            <!--                                                width='35'-->
+                                            <!--                                                height='35'-->
+                                            <!--                                            />-->
+                                            <!--                                        </div>-->
+                                            <span
+                                                class='text-white'>เข้าสู่ระบบ</span>
+                                        </div>
+                                        <div @click='closeModal' class='cursor-pointer'>
                                             <svg-icon
-                                                name='eva_arrow-back-fill'
-                                                width='35'
-                                                height='35'
+                                                name='carbon_close-filled'
+                                                width='25'
+                                                height='25'
                                             />
                                         </div>
-                                        <span class='ml-2 text-white'>เข้าสู่ระบบ</span>
                                     </div>
-                                    <div @click='toggleModal = !toggleModal' class='cursor-pointer'>
-                                        <svg-icon
-                                            name='carbon_close-filled'
-                                            width='25'
-                                            height='25'
-                                        />
-                                    </div>
-                                </div>
 
-                                <div class=''>
                                     <div class='text-xl text-white mb-1'>
                                         ล๊อคอิน เข้าสู่ระบบ
                                     </div>
                                     <div class='text-sm text-white font-light'>
-                                        ระบุเบอร์โทรศัพท์ / Pincode
+                                        ระบุเบอร์โทรศัพท์ / รหัสผ่าน
                                     </div>
-
                                     <div class='mt-4'>
-                                        <div class=''>
-                                            <div class='mb-4 relative'>
-                                                <ValidationObserver ref='form' v-slot='{ handleSubmit }'>
-                                                    <form @submit.prevent='handleSubmit(onSubmit)'>
-                                                        <ValidationProvider
-                                                            name='เบอร์โทรศัพท์'
-                                                            rules='required'
-                                                            v-slot='{ errors }'
-                                                        >
-                                                            <input type='text'
-                                                                   class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                                                   v-model='tel'
-                                                                   placeholder='เบอร์โทรศัพท์'>
-                                                            <div class='absolute top-2 left-3'>
-                                                                <svg-icon
-                                                                    name='fluent_phone-checkmark-20-regular'
-                                                                    width='25'
-                                                                    height='25'
-                                                                />
-                                                            </div>
-                                                            <small class='text-[red] text-xs'>
-                                                                {{ errors[0] }}
-                                                            </small>
-                                                        </ValidationProvider>
-                                                    </form>
-                                                </ValidationObserver>
-                                            </div>
-
-                                            <div class='mb-4 relative'>
-                                                <ValidationObserver ref='form' v-slot='{ handleSubmit }'>
-                                                    <form @submit.prevent='handleSubmit(onSubmit)'>
-                                                        <ValidationProvider
-                                                            name='Pincode'
-                                                            rules='required'
-                                                            v-slot='{ errors }'
-                                                        >
-                                                            <input type='text'
-                                                                   class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                                                   v-model='pin'
-                                                                   placeholder='Pincode'>
-                                                            <div class='absolute top-2 left-3'>
-                                                                <svg-icon
-                                                                    name='ri_lock-password-line'
-                                                                    width='25'
-                                                                    height='25'
-                                                                />
-                                                            </div>
-                                                            <small class='text-[red] text-xs'>
-                                                                {{ errors[0] }}
-                                                            </small>
-                                                        </ValidationProvider>
-                                                    </form>
-                                                </ValidationObserver>
-                                            </div>
-
-                                            <div class='flex justify-end text-white mb-4 cursor-pointer'>
-                                                ลืม Pincode ?
-                                            </div>
-
-                                            <button
-                                                class='w-full text-white text-xl bg-gradient-to-b from-gold-1 to-gold-2 px-7 py-2 rounded-full'>
-                                                ยืนยัน
-                                            </button>
-
-                                            <div class='mt-5'>
-                                                <div class='flex justify-center'>
-                                                    <div class='text-white bg-[#1E1E1E] px-2 font-light'>
-                                                        หรือ
-                                                    </div>
+                                        <ValidationObserver ref='form' v-slot='{ handleSubmit }'>
+                                            <form @submit.prevent='handleSubmit(onSubmit)'>
+                                                <div class='relative mb-4'>
+                                                    <ValidationProvider
+                                                        name='เบอร์โทรศัพท์'
+                                                        rules='required'
+                                                        v-slot='{ errors }'
+                                                    >
+                                                        <input type='number'
+                                                               class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
+                                                               v-model='tel'
+                                                               placeholder='เบอร์โทรศัพท์'>
+                                                        <div class='absolute top-2 left-3'>
+                                                            <svg-icon
+                                                                name='fluent_phone-checkmark-20-regular'
+                                                                width='25'
+                                                                height='25'
+                                                            />
+                                                        </div>
+                                                        <small class='text-[red] text-xs'>
+                                                            {{ errors[0] }}
+                                                        </small>
+                                                    </ValidationProvider>
                                                 </div>
-                                                <div class='border-b h-[5px] border-white w-full -mt-4 z1'></div>
-                                            </div>
 
-                                            <div class='mt-6 flex justify-center'>
-                                                <div class='text-white mr-3'>
-                                                    คุณยังไม่มีบัญชี?
+                                                <div class='relative mb-4'>
+                                                    <ValidationProvider
+                                                        name='รหัสผ่าน'
+                                                        rules='required'
+                                                        v-slot='{ errors }'
+                                                    >
+                                                        <input type='password'
+                                                               class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
+                                                               v-model='pin'
+                                                               placeholder='รหัสผ่าน'>
+                                                        <div class='absolute top-2 left-3'>
+                                                            <svg-icon
+                                                                name='ri_lock-password-line'
+                                                                width='25'
+                                                                height='25'
+                                                            />
+                                                        </div>
+                                                        <small class='text-[red] text-xs'>
+                                                            {{ errors[0] }}
+                                                        </small>
+                                                    </ValidationProvider>
                                                 </div>
-                                                <div class='underline text-yellow font-light cursor-pointer'>
-                                                    สมัครสมาชิกใหม่
+
+                                                <div @click="loginStatus = 'forgetPassword'"
+                                                     class='flex justify-end text-white mb-4 cursor-pointer'>
+                                                    ลืมรหัสผ่าน ?
                                                 </div>
+
+                                                <button
+                                                    class='w-full text-white text-xl bg-gradient-to-b from-gold-1 to-gold-2 px-7 py-2 rounded-full'>
+                                                    ยืนยัน
+                                                </button>
+                                            </form>
+                                        </ValidationObserver>
+
+                                        <div class='mt-5'>
+                                            <div class='flex justify-center'>
+                                                <div class='text-white bg-[#1E1E1E] px-2 font-light'>
+                                                    หรือ
+                                                </div>
+                                            </div>
+                                            <div class='border-b h-[5px] border-white w-full -mt-4 z1'></div>
+                                        </div>
+
+                                        <div class='mt-6 flex justify-center'>
+                                            <div class='text-white mr-3'>
+                                                คุณยังไม่มีบัญชี?
+                                            </div>
+                                            <div @click="loginStatus = 'register'" class='underline text-yellow font-light cursor-pointer'>
+                                                สมัครสมาชิกใหม่
                                             </div>
                                         </div>
                                     </div>
@@ -150,9 +146,13 @@
                             </div>
                         </div>
                     </div>
+                    <div v-if="loginStatus === 'forgetPassword'">
+                        <ForgetPassword @modal='setModal' />
+                    </div>
+                    <div v-if="loginStatus === 'register'">
+                        <Register @modal='setModal' />
+                    </div>
                 </div>
-
-
                 <div class='flex justify-center items-center text-sm text-white mt-2'>
                     <div class='mr-7 cursor-pointer md:hidden'>
                         ข่าวสาร
@@ -165,9 +165,10 @@
                     </div>
                 </div>
             </header>
+
         </div>
 
-        <div class='container mx-auto px-2 py-2 md:py-5 xl:py-9'>
+        <div class='container mx-auto px-3 md:px-7 py-2 md:py-5 xl:py-9'>
             <Nuxt />
         </div>
 
@@ -195,14 +196,18 @@
 </template>
 
 <script>
+import Register from '../components/register'
+import ForgetPassword from '../components/forgetPassword'
 
 export default {
     name: 'default',
+    components: { ForgetPassword, Register },
     data() {
         return {
             tel: '',
             pin: '',
-            toggleModal: true,
+            loginStatus: 'login',
+            toggleModal: false,
             bank: [
                 {
                     image: require('../assets/image/bank-1.png')
@@ -248,12 +253,23 @@ export default {
         baseName() {
             return process.env.baseName
         },
+
         onSubmit() {
             try {
 
             } catch (e) {
                 return e
             }
+        },
+
+        closeModal() {
+            this.toggleModal = !this.toggleModal
+            this.loginStatus = 'login'
+        },
+
+        setModal(value) {
+            this.loginStatus = 'login'
+            this.toggleModal = value
         }
     }
 }
