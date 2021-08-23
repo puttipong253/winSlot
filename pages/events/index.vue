@@ -1,20 +1,20 @@
 <template>
     <div>
-        <div class='text-white text-xl md:text-4xl mb-4'>
+        <div class='text-white text-2xl xl:text-4xl mt-5 md:mt-0 mb-2 md:mb-4'>
             กิจกรรม ของเรา
         </div>
         <div class='text-white font-light mb-2 text-sm md:text-base'>
             ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
         </div>
 
-        <div class='grid grid-cols-2 gap-5 mt-10'>
+        <div class='grid grid-cols-2 gap-5 mt-5 md:mt-10'>
             <div v-for='(items,index) in events' :key='index' class='bg-gray-3 rounded-md p-3 '>
-                <div class='grid grid-cols-2 gap-5'>
-                    <div class='h-[12rem]'>
+                <div class='grid grid-cols-1 md:grid-cols-2 gap-1 xl:gap-5'>
+                    <div class='h-[8rem] xl:h-[12rem]'>
                         <img :src='items.image' alt='' class='w-full h-full'>
                     </div>
 
-                    <div class='py-5 px-2 text-white '>
+                    <div class='py-0 px-0 xl:py-5 md:px-2 text-white'>
                         <div class='mb-4'>
                             {{items.title}}
                         </div>
@@ -31,6 +31,7 @@
 <script>
 export default {
     name: 'events',
+    layout: 'default',
     data() {
         return {
             events: [

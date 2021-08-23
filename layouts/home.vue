@@ -28,9 +28,25 @@
                 <Nuxt />
             </div>
 
-<!--            <footer class='text-white fixed bottom-0'>-->
-<!--                footer-->
-<!--            </footer>-->
+            <footer class='text-white fixed bottom-0 right-0 left-0 w-full'>
+                <div class='container mx-auto px-2'>
+                    <div class='bg-[#1A1A1A] flex justify-around py-2'>
+                        <div v-for='(items, index) in footer' :key='index'>
+                            <div class='border'>
+                                <svg-icon
+                                    :name='items.icon'
+                                    width='30'
+                                    height='30'
+                                    class='border w-full'
+                                />
+                                <span>
+                                    {{items.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </template>
@@ -40,7 +56,30 @@
 export default {
     name: 'home',
     data() {
-        return {}
+        return {
+            footer: [
+                {
+                    name: 'กิจกรรม',
+                    icon: 'ic_round-local-activity'
+                },
+                {
+                    name: 'โปรโมชัน',
+                    icon: 'eos-icons_product-subscriptions'
+                },
+                {
+                    name: 'หน้าหลัก',
+                    icon: 'ant-design_home-filled'
+                },
+                {
+                    name: 'สร้างรายได้',
+                    icon: 'fluent_people-money-24-filled'
+                },
+                {
+                    name: 'ติดต่อแอดมิน',
+                    icon: 'clarity_administrator-solid'
+                }
+            ]
+        }
     },
 
     methods: {

@@ -14,7 +14,7 @@
                         <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('randomCard')">
                             เปิดไพ่
                         </div>
-                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('promotions')">
                             โปรโมชั่น
                         </div>
                         <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
@@ -154,10 +154,13 @@
                     </div>
                 </div>
                 <div class='flex justify-center items-center text-sm text-white mt-2'>
-                    <div class='mr-7 cursor-pointer md:hidden'>
-                        ข่าวสาร
+                    <div class='mr-7 cursor-pointer md:hidden' @click="$router.push('events')">
+                        กิจกรรม
                     </div>
-                    <div class='mr-7 cursor-pointer md:hidden'>
+                    <div class='mr-7 cursor-pointer md:hidden' @click="$router.push('randomCard')">
+                        เปิดไพ่
+                    </div>
+                    <div class='mr-7 cursor-pointer md:hidden' @click="$router.push('promotions')">
                         โปรโมชั่น
                     </div>
                     <div class='cursor-pointer md:hidden'>

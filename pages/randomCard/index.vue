@@ -37,7 +37,8 @@
 
 <script>
 export default {
-    name: 'index'
+    name: 'randomCard',
+    layout: 'default',
 }
 </script>
 
