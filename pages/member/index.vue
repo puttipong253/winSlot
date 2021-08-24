@@ -1,7 +1,7 @@
 <template>
     <div>
         <client-only>
-            <swiper class='swiper' :options='swiperOption'>
+            <swiper class='swiper z0' :options='swiperOption'>
                 <swiper-slide v-for='(item,index) in banner' :key='index'>
                     <img :src='item.image' alt=''
                          class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
@@ -60,17 +60,23 @@
 
             <div class='grid grid-cols-4 sm:grid-cols-2 xl:grid-cols-4 gap-x-2 gap-y-7 md:gap-x-6 md:gap-y-12 mt-7'>
                 <div v-for='(item,index) in menu' :key='index'
-                     class='border border-gray-1 text-gray-1 rounded-lg flex justify-center py-6 md:py-14 relative cursor-pointer transform transition duration-300 ease-in-out hover:-translate-y-3 hover:text-[#dca93d] hover:border-[#dca93d]'>
+                     @click="modal(item)"
+                     class='hov border border-gray-1 text-gray-1 rounded-lg flex justify-center py-6 md:py-14 relative cursor-pointer transform transition duration-300 ease-in-out hover:-translate-y-3 hover:text-[#dca93d] hover:border-[#dca93d]'>
                     <svg-icon
                         :name='item.icon'
                         class='w-[35px] h-[35px] md:w-[100px] md:h-[100px] xl:w-[140px] xl:h-[140px]'
                     />
-                    <div class='absolute -bottom-3 sm:-bottom-6'>
-                        <button class='text-white bg-gray-1 text-[11px] md:text-sm md:text-xl rounded-full px-2 py-1 md:px-7 md:py-2 hov'>
+                    <div class='absolute -bottom-3 md:bottom-[-1.2rem]'>
+                        <button
+                            class='text-white bg-gray-1 text-[11px] md:text-sm md:text-xl rounded-full px-2 py-1 md:px-7 md:py-2'>
                             {{ item.name }}
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <div v-if='showModal'>
+                <MenuModal @modal='setModal' :modalStatus='modalStatus'/>
             </div>
 
             <div class='text-white mt-[3rem] md:mt-[5rem]'>
@@ -136,10 +142,10 @@
                             <img :src='items.image' alt='' class='w-full'>
                             <div class='py-3 px-3'>
                                 <div class='text-lg md:text-xl'>
-                                    {{items.title}}
+                                    {{ items.title }}
                                 </div>
                                 <div class='text-sm md:text-base font-light'>
-                                    {{items.subTitle}}
+                                    {{ items.subTitle }}
                                 </div>
                             </div>
                         </div>
@@ -165,16 +171,21 @@
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import global from '../../mixins/global'
+import MenuModal from '../../components/menuModal'
+
 
 export default {
     layout: 'home',
     mixins: [global],
     components: {
+        MenuModal,
         Swiper,
         SwiperSlide
     },
     data() {
         return {
+            showModal: false,
+            modalStatus: '',
             user: {
                 bag: 0,
                 price: 10000,
@@ -184,48 +195,56 @@ export default {
                 {
                     icon: 'clarity_wallet-line',
                     name: 'เติมเงิน',
-                    path: ''
+                    path: '',
+                    nameEng: 'topUp'
                 },
                 {
                     icon: 'fluent_person-money-24-regular',
                     name: 'ถอนเงิน',
-                    path: ''
+                    path: '',
+                    nameEng: 'withdraw'
                 },
                 {
                     icon: 'healthicons_coins-outline',
                     name: 'โยกเงิน',
-                    path: ''
+                    path: '',
+                    nameEng: 'changeMoney'
                 },
                 {
                     icon: 'clarity_coin-bag-line',
                     name: 'คืนยอดเสีย',
-                    path: ''
+                    path: '',
+                    nameEng: 'returnBalance'
                 },
                 {
                     icon: 'octicon_gift-24',
                     name: 'โปรโมชัน',
-                    path: ''
+                    path: 'promotions',
+                    nameEng: 'promotions'
                 },
                 {
                     icon: 'carbon_ai-status-in-progress',
                     name: 'สร้างรายได้',
-                    path: ''
+                    path: 'makeMoney',
+                    nameEng: 'makeMoney'
                 },
                 {
                     icon: 'la_user-cog',
                     name: 'ติดต่อแอดมิน',
-                    path: ''
+                    path: 'contact',
+                    nameEng: 'contact'
                 },
                 {
                     icon: 'fluent_textbox-more-24-regular',
                     name: 'เพิ่มเติม',
-                    path: ''
+                    path: '',
+                    nameEng: 'more'
                 }
             ],
             banner: [
                 {
                     image: require('../../assets/image/slot1.png')
-                },
+                }
                 // {
                 //     image: require('../assets/image/50825.jpg')
                 // }
@@ -269,24 +288,42 @@ export default {
                 }
             }
         }
+    },
+
+    methods: {
+        modal(item) {
+            this.showModal = true
+            this.modalStatus = item.nameEng
+            if (item.path !== '') {
+                this.$router.push(item.path)
+            }
+        },
+
+        setModal(value) {
+            this.showModal = value
+        }
     }
 }
 </script>
 
 <style lang='scss' scoped>
-//.hov:hover {
-//    div button {
-//        background-image: linear-gradient(180deg, #BE7A22 0%, #FFCF5A 100%);
-//        box-shadow: 0 5px 10px rgba(240, 106, 9, 0.4);
-//    }
-//}
 .hov:hover {
-    background: linear-gradient(180deg, #BE7A22 0%, #FFCF5A 100%)
+    div button {
+        background-image: linear-gradient(180deg, #BE7A22 0%, #FFCF5A 100%);
+        box-shadow: 0 5px 10px rgba(240, 106, 9, 0.4);
+    }
 }
+//.hov:hover {
+//    background: linear-gradient(180deg, #BE7A22 0%, #FFCF5A 100%)
+//}
 
 .text-gradient {
     background: -webkit-linear-gradient(#BE7A22 0%, #FFCF5A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.z0 {
+    z-index: 0;
 }
 </style>

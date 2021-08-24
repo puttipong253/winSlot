@@ -5,7 +5,7 @@
             <header class='py-2 md:py-3 px-3 md:px-7 rounded-b-xl'>
                 <div class='flex justify-between items-center'>
                     <div class='cursor-pointer'>
-                        <img src='../assets/image/logo.png' alt='' class='w-[60px] h-[60px] md:w-[75px] md:h-[75px]'>
+                        <img src='../assets/image/logo.png' alt='' class='w-[60px] h-[60px] md:w-[75px] md:h-[75px]' @click="$router.push('/')">
                     </div>
                     <div class='flex items-center'>
                         <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('events')">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class='bg-gradient-to-b font-light from-gold-1 to-gold-2'>
+            <div class='bg-gradient-to-b from-gold-1 to-gold-2 font-light'>
                 <div class='container mx-auto p-2 text-center'>
                     <span class='text-white font-normal text-sm'>
                         © COPYRIGHT 2020 COMPANYNAME ALL RIGHTS RESERVED
