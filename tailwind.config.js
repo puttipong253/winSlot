@@ -45,6 +45,9 @@ module.exports = {
                 'fade-in-up': 'fade-in-up 1s ease-out',
                 'fade-in-right': 'fade-in-right 1s ease-out',
             },
+            backgroundImage: theme => ({
+                'withdraw': "url('~/assets/image/withdraw_background.png')",
+            })
         },
         boxShadow: {
             sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -58,6 +61,7 @@ module.exports = {
             none: 'none',
             'gold' : '0px 4px 48px rgba(255, 207, 90, 0.5)'
         },
+
         colors: {
             'pink-1': '#FF4359',
             'white': '#ffffff',
@@ -65,11 +69,12 @@ module.exports = {
             'yellow': '#FFD348',
             'gray-1': '#4F4F4F',
             'gray-2': 'rgba(255, 255, 255, 0.05)',
+            'gray-3': 'rgba(36, 36, 36, 0.4)',
+            'gray-4': '#A0A0A0',
             'gold-1' : '#BE7A22',
             'gold-2' : '#FFCF5A',
             'black': '#000000',
             'black-1' : '#111111',
-            'gray-3': 'rgba(36, 36, 36, 0.4)'
         },
         screens: {
             'sm': '640px',

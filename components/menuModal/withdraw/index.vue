@@ -21,9 +21,74 @@
                     </div>
 
                     <div>
+                        <div class='w-full relative'>
+                            <img src='~/assets/image/withdraw_background.png' alt='' class=''>
+                            <div class='absolute top-0 p-3 md:p-5'>
+                                <div class='text-white text-2xl'>
+                                    Wallet
+                                </div>
+                                <div class='text-white text-3xl mt-5 md:mt-10'>
+                                    ฿ {{ addComma(wallet.toFixed(2)) }}
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class='mt-3 bg-[#242424] rounded-lg p-4'>
+                            <div class='flex items-center border-b border-gray-4 pb-3'>
+                                <img src='~/assets/image/ktb.png' alt='' width='30' class=''>
+                                <span class='ml-3 font-light text-base text-white'>ธนาคารกรุงไทย</span>
+                            </div>
+                            <div class='flex justify-between font-light text-white border-b border-gray-4 py-2'>
+                                <div>
+                                    เลขที่บัญชี
+                                </div>
+                                <div>
+                                    {{ bank_number }}
+                                </div>
+                            </div>
+                            <div class='flex justify-between font-light text-white py-2'>
+                                <div>
+                                    ชื่อบัญชี
+                                </div>
+                                <div>
+                                    {{ bank_account_name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='mt-3 bg-[#242424] rounded-lg p-4'>
+                            <div class='font-light text-white border-b border-gray-4 py-2'>
+                                <div class=''>
+                                    จำนวนเงิน
+                                </div>
+                                <div class='flex justify-end text-2xl '>
+                                    <input type='text' v-model='price'
+                                           class='w-40 bg-[#242424] text-xl focus:outline-none text-right pt-1'
+                                           placeholder='กรอกจำนวนเงิน'>
+                                    <span class='ml-3'>บาท</span>
+                                </div>
+                            </div>
+                            <div class='text-sm mt-2 font-light text-white'>
+                                จำนวนเงิน (บาท) **ขั้นต่ำ 300 บาท / สูงสุด 20,000 บาท
+                            </div>
+                        </div>
+
+                        <div class='text-[#F0B909] font-light mt-3'>
+                            หากรับโบนัส กรุณาโยกเงินทั้งหมดไปที่กระเป๋าตังค์หลัก ก่อนการกดถอนเงินทุกครั้ง
+                        </div>
+
+                        <div class='flex gap-3 mt-4'>
+                            <button
+                                @click="closeModal"
+                                class='bg-gray-4 px-5 py-2 text-white rounded-full w-full'>
+                                ยกเลิก
+                            </button>
+                            <button
+                                class='bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 text-white rounded-full w-full'>
+                                ยืนยัน
+                            </button>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -31,11 +96,26 @@
 </template>
 
 <script>
+import global from '~/mixins/global'
+
 export default {
     name: 'withdraw',
+    mixins: [global],
     data() {
         return {
-            showModal: false
+            showModal: false,
+            wallet: 950,
+            bank_number: '485-331-3463',
+            bank_account_name: 'สายฟ้า โยธา',
+            price: ''
+        }
+    },
+
+    watch: {
+        price: function(newValue) {
+            const result = newValue.replace(/\D/g, "")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            this.$nextTick(() => this.price = result)
         }
     },
 
@@ -47,6 +127,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 
 </style>

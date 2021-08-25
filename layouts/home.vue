@@ -33,7 +33,7 @@
                     <div class='bg-[#1A1A1A] flex justify-around rounded-t-xl'>
                         <div v-for='(items, index) in footer' :key='index' class='relative cursor-pointer'>
                             <div class='hidden md:block'>
-                                <div class='w-[6rem]' :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 py-6 mt-[-20px] mb-[-30px] rounded-full' : 'pt-[4px]'">
+                                <div @click="$router.push(items.path)" class='w-[6rem]' :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 py-6 mt-[-20px] mb-[-30px] rounded-full' : 'pt-[4px]'">
                                     <svg-icon
                                         :name='items.icon'
                                         width='25'
@@ -85,7 +85,8 @@ export default {
                 },
                 {
                     name: 'หน้าหลัก',
-                    icon: 'ant-design_home-filled'
+                    icon: 'ant-design_home-filled',
+                    path: '/member'
                 },
                 {
                     name: 'สร้างรายได้',

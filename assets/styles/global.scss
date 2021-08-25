@@ -9,3 +9,15 @@ html, body {
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
     background: #FFCF5A;
 }
+
+.z1 {
+    z-index: -1;
+}
+
+.z0 {
+    z-index: 0;
+}
+
+.z2 {
+    z-index: 1;
+}
