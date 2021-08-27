@@ -20,9 +20,9 @@
                     </span>
                 </button>
 
-                <div class='absolute right-2 -mt-2 md:mt-0'>
+                <div class='absolute right-14 -mt-2 md:mt-0 z-40'>
                     <button
-                        class='bg-gradient-to-b from-gold-1 to-gold-2 p-3 text-white rounded-l-md'>
+                        class='fixed bg-gradient-to-b from-gold-1 to-gold-2 p-3 text-white rounded-l-md'>
                         <svg-icon
                             name='line'
                             class='w-[20px] h-[20px] md:w-[30px] md:h-[30px]'

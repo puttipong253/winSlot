@@ -21,7 +21,51 @@
                     </div>
 
                     <div>
+                        <div class='w-full relative'>
+                            <img src='~/assets/image/withdraw_background.png' alt='' class='px-[0.9rem]'>
+                            <div class='absolute top-0 py-3 px-5 md:py-5 md:px-8'>
+                                <div class='text-white text-2xl'>
+                                    Wallet
+                                </div>
+                                <div class='text-white text-3xl mt-5 md:mt-10'>
+                                    ฿ {{ addComma(wallet.toFixed(2)) }}
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class='w-full flex justify-center mt-2'>
+                            <svg-icon
+                                name='fluent_arrow-sort-24-filled'
+                                width='30'
+                                height='30'
+                            />
+                        </div>
+
+                        <div class='w-full relative'>
+                            <img src='~/assets/image/gameBackground.png' alt='' class=''>
+                            <div class='absolute top-0 py-3 px-5 md:py-5 md:px-8'>
+                                <div class='text-white text-2xl'>
+                                    JOCKER GAMING
+                                </div>
+                                <div class='text-white text-3xl mt-5 md:mt-10'>
+                                    ฿ {{ addComma(wallet.toFixed(2)) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='flex gap-3 mt-4 px-2 md:px-4'>
+                            <button
+                                @click="closeModal"
+                                class='bg-gray-4 px-5 py-2 text-white rounded-full w-full'>
+                                ยกเลิก
+                            </button>
+                            <button
+                                class='bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 text-white rounded-full w-full'>
+                                ยืนยัน
+                            </button>
+                        </div>
                     </div>
 
                 </div>
@@ -31,11 +75,17 @@
 </template>
 
 <script>
+import global from '~/mixins/global'
 export default {
     name: 'changeMoney',
+    mixins: [global],
     data() {
         return {
-            showModal: false
+            showModal: false,
+            wallet: 950,
+            bank_number: '485-331-3463',
+            bank_account_name: 'สายฟ้า โยธา',
+            price: ''
         }
     },
 
