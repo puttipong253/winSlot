@@ -31,6 +31,7 @@ export default {
         { src: '~/plugins/vue-select.js', ssr: false },
         { src: '~/plugins/vue-clipboard2.js', ssr: false },
         { src: '~/plugins/vue-notification.js', ssr: false },
+        { src: '~/plugins/vue-carousel-3d.js', ssr: false },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

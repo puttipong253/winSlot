@@ -35,21 +35,50 @@
         <Register @modal='setModal' v-if='showModal' />
 
         <client-only>
-            <swiper class='swiper' :options='swiperOption'>
-                <swiper-slide v-for='(item,index) in banner' :key='index'>
-                    <img :src='item.image' alt=''
-                         class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
-                </swiper-slide>
-                <div class='swiper-pagination' slot='pagination'></div>
-            </swiper>
+            <div class='lg:hidden'>
+                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='300'
+                             :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
+
+            <div class='hidden lg:block xl:hidden'>
+                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='400'
+                             :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
+
+            <div class='hidden xl:block'>
+                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='530'
+                             :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer' @click='alert'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
         </client-only>
 
         <div class='mt-5 md:mt-[3rem]'>
             <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-7 text-white'>
-                <div v-for='(items,index) in service' :key='index' class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
+                <div v-for='(items,index) in service' :key='index'
+                     class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
                     <img :src='items.image' alt='' class='mx-auto'>
-                    <div class='mt-5 text-xl font-medium'>{{items.title}}</div>
-                    <div class='mt-4 text-base'>{{items.content}}</div>
+                    <div class='mt-5 text-xl font-medium'>{{ items.title }}</div>
+                    <div class='mt-4 text-base'>{{ items.content }}</div>
                 </div>
             </div>
         </div>
@@ -148,6 +177,7 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import global from '../mixins/global'
 import Register from '../components/register'
+
 export default {
     layout: 'default',
     mixins: [global],
@@ -158,6 +188,18 @@ export default {
     },
     data() {
         return {
+            slides: 3,
+            data_slides: [
+                {
+                    image: require('~/assets/image/joker_bg.png')
+                },
+                {
+                    image: require('~/assets/image/pussy_bg.png')
+                },
+                {
+                    image: require('~/assets/image/superslot_bg.png')
+                }
+            ],
             showModal: false,
             user: {
                 bag: 0,
@@ -236,9 +278,13 @@ export default {
         }
     },
 
-    methods : {
+    methods: {
         setModal(value) {
             this.showModal = value
+        },
+
+        alert() {
+            alert('test')
         }
     }
 }

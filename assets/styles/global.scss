@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap');
 
 html, body {
-  font-family: 'Prompt', sans-serif !important;
+    font-family: 'Prompt', sans-serif !important;
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -21,3 +21,190 @@ html, body {
 .z2 {
     z-index: 1;
 }
+
+@media screen and (max-width: 768px) {
+    .carousel-3d-container {
+        height: 213px !important;
+    }
+
+    .carousel-3d-slider {
+        width: 302px !important;
+        height: 213px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide {
+        width: 302px !important;
+        height: 213px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.current {
+        width: 302px !important;
+        height: 213px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.right-1 {
+        width: 302px !important;
+        height: 213px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.left-1 {
+        width: 302px !important;
+        height: 213px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-container .carousel-3d-controls .next {
+        color: white;
+        right: 30px
+    }
+
+    .carousel-3d-container .carousel-3d-controls .prev {
+        color: white;
+        left: 30px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-3d-container {
+        height: 253px !important;
+    }
+
+    .carousel-3d-slider {
+        width: 332px !important;
+        height: 253px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.current {
+        width: 332px !important;
+        height: 253px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide {
+        width: 332px !important;
+        height: 253px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.right-1 {
+        width: 332px !important;
+        height: 253px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-slide.left-1 {
+        width: 332px !important;
+        height: 253px !important;
+        border-radius: 20px !important;
+    }
+
+    .carousel-3d-container .carousel-3d-controls .next {
+        color: white;
+        right: 30px
+    }
+
+    .carousel-3d-container .carousel-3d-controls .prev {
+        color: white;
+        left: 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .carousel-3d-container {
+        height: 293px !important;
+    }
+
+    .carousel-3d-slider {
+        width: 392px !important;
+        height: 293px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.current {
+        width: 392px !important;
+        height: 293px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide {
+        width: 392px !important;
+        height: 293px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.right-1 {
+        width: 392px !important;
+        height: 293px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.left-1 {
+        width: 392px !important;
+        height: 293px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-container .carousel-3d-controls .next {
+        color: white;
+        right: 75px
+    }
+
+    .carousel-3d-container .carousel-3d-controls .prev {
+        color: white;
+        left: 75px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .carousel-3d-container  {
+        height: 393px !important;
+    }
+
+    .carousel-3d-slider {
+        width: 572px !important;
+        height: 393px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.current {
+        width: 572px !important;
+        height: 393px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide {
+        width: 572px !important;
+        height: 393px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.right-1 {
+        width: 572px !important;
+        height: 393px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-slide.left-1 {
+        width: 572px !important;
+        height: 393px !important;
+        border-radius: 25px !important;
+    }
+
+    .carousel-3d-container .carousel-3d-controls .next {
+        color: white;
+        right: 60px
+    }
+
+    .carousel-3d-container .carousel-3d-controls .prev {
+        color: white;
+        left: 60px;
+    }
+}
+
+
+

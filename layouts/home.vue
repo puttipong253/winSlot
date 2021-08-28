@@ -24,7 +24,7 @@
                 </div>
             </header>
 
-            <div class='py-6 md:py-9'>
+            <div class='container mx-auto px-3 md:px-7 py-2 md:py-5 xl:py-9'>
                 <Nuxt />
             </div>
 

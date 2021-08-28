@@ -1,13 +1,38 @@
 <template>
     <div>
         <client-only>
-            <swiper class='swiper z0' :options='swiperOption'>
-                <swiper-slide v-for='(item,index) in banner' :key='index'>
-                    <img :src='item.image' alt=''
-                         class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
-                </swiper-slide>
-                <div class='swiper-pagination' slot='pagination'></div>
-            </swiper>
+            <div class='lg:hidden'>
+                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='300' :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
+
+            <div class='hidden lg:block xl:hidden'>
+                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='400' :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
+
+            <div class='hidden xl:block'>
+                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='530' :display='3'>
+                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                        <div class='w-full h-full cursor-pointer' @click='alert'>
+                            <img :src='slide.image' alt='' class='h-full w-full'>
+                        </div>
+                    </slide>
+                </carousel-3d>
+            </div>
         </client-only>
 
         <div class='mt-5 lg:mt-7 xl:mt-12'>
@@ -184,6 +209,18 @@ export default {
     },
     data() {
         return {
+            slides: 3,
+            data_slides: [
+                {
+                    image: require('~/assets/image/joker_bg.png')
+                },
+                {
+                    image: require('~/assets/image/pussy_bg.png')
+                },
+                {
+                    image: require('~/assets/image/superslot_bg.png')
+                }
+            ],
             showModal: false,
             modalStatus: '',
             user: {
