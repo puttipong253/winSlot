@@ -39,7 +39,7 @@
                 <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
                              :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='300'
                              :display='3'>
-                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                         <div class='w-full h-full cursor-pointer'>
                             <img :src='slide.image' alt='' class='h-full w-full'>
                         </div>
@@ -51,7 +51,7 @@
                 <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
                              :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='400'
                              :display='3'>
-                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                         <div class='w-full h-full cursor-pointer'>
                             <img :src='slide.image' alt='' class='h-full w-full'>
                         </div>
@@ -63,7 +63,7 @@
                 <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
                              :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='530'
                              :display='3'>
-                    <slide v-for='(slide, i) in data_slides' :index='i'>
+                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                         <div class='w-full h-full cursor-pointer' @click='alert'>
                             <img :src='slide.image' alt='' class='h-full w-full'>
                         </div>
@@ -188,8 +188,7 @@ export default {
     },
     data() {
         return {
-            slides: 3,
-            data_slides: [
+            slides: [
                 {
                     image: require('~/assets/image/joker_bg.png')
                 },

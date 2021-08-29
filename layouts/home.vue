@@ -32,8 +32,8 @@
                 <div class='container mx-auto md:px-2'>
                     <div class='bg-[#1A1A1A] flex justify-around rounded-t-xl'>
                         <div v-for='(items, index) in footer' :key='index' class='relative cursor-pointer'>
-                            <div class='hidden md:block'>
-                                <div @click="$router.push(items.path)" class='w-[6rem]' :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 py-6 mt-[-20px] mb-[-30px] rounded-full' : 'pt-[4px]'">
+                            <div class='hidden md:block '>
+                                <div @click="$router.push(items.path)" class='w-[6rem] hover:bg-gradient-to-b from-gold-1 to-gold-2 ' :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 py-6 mt-[-20px] mb-[-30px] rounded-full' : 'pt-[4px]'">
                                     <svg-icon
                                         :name='items.icon'
                                         width='25'
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class='md:hidden'>
-                                <div class='py-[12px] w-[60px]' :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 rounded-full' : ''">
+                                <div class='py-[12px] w-[60px]' @click="$router.push(items.path)" :class="index === 2 ? 'bg-gradient-to-b from-gold-1 to-gold-2 rounded-full' : ''">
                                     <svg-icon
                                         :name='items.icon'
                                         width='18'
@@ -77,10 +77,12 @@ export default {
             footer: [
                 {
                     name: 'กิจกรรม',
-                    icon: 'ic_round-local-activity'
+                    icon: 'ic_round-local-activity',
+                    path: '/member/events',
                 },
                 {
                     name: 'โปรโมชัน',
+                    path: '/member/promotions',
                     icon: 'eos-icons_product-subscriptions'
                 },
                 {
