@@ -4,7 +4,7 @@
         <div
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
-                <div class='bg-[#1E1E1E] w-full md:w-[30rem] rounded-lg px-7 py-4'>
+                <div class='bg-[#1E1E1E]  min-h-full max-h-[35rem] overflow md:w-[30rem] rounded-lg px-7 py-4'>
                     <div class='flex justify-between items-center mb-6'>
                         <div class='text-2xl flex items-center'>
                             <span class='text-white'>
@@ -128,5 +128,16 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.overflow {
+    overflow: auto;
 
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #1D2936;
+        border-radius: 20px;
+    }
+}
 </style>

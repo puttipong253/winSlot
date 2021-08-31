@@ -1,38 +1,13 @@
 <template>
     <div>
         <client-only>
-            <div class='lg:hidden'>
-                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='300' :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
-
-            <div class='hidden lg:block xl:hidden'>
-                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='400' :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
-
-            <div class='hidden xl:block'>
-                <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='530' :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer' @click='alert'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
+                <swiper class='swiper' :options='swiperOption'>
+                    <swiper-slide v-for='(item,index) in banner' :key='index'>
+                        <img :src='item.image' alt=''
+                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
+                    </swiper-slide>
+                    <div class='swiper-pagination' slot='pagination'></div>
+                </swiper>
         </client-only>
 
         <div class='mt-5 lg:mt-7 xl:mt-12'>
@@ -112,33 +87,38 @@
                     <div class='text-base md:text-lg font-light'>
                         ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
                     </div>
-                    <div class='hidden md:block'>
-                        <button class='flex items-center bg-gradient-to-b from-gold-1 to-gold-2 py-1 px-6 rounded-full'>
-                            <span class='mr-2 text-xs md:text-sm'>ดูทั้งหมด</span>
-                            <svg-icon
-                                name='ic_baseline-navigate-next'
-                                width='25'
-                                height='25'
-                            />
-                        </button>
-                    </div>
                 </div>
-                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-10'>
-                    <div v-for='(items,index) in game' :key='index' class='flex justify-center'>
-                        <img :src='items.image' alt='' class='w-full'>
-                    </div>
+                <div class='lg:hidden'>
+                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='300' :display='3'>
+                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                            <div class='w-full h-full cursor-pointer'>
+                                <img :src='slide.image' alt='' class='h-full w-full'>
+                            </div>
+                        </slide>
+                    </carousel-3d>
                 </div>
-                <div class='md:hidden'>
-                    <div class='flex justify-center mt-5'>
-                        <button class='flex items-center bg-gradient-to-b from-gold-1 to-gold-2 py-1 px-6 rounded-full'>
-                            <span class='mr-2 text-xs md:text-sm'>ดูทั้งหมด</span>
-                            <svg-icon
-                                name='ic_baseline-navigate-next'
-                                width='25'
-                                height='25'
-                            />
-                        </button>
-                    </div>
+
+                <div class='hidden lg:block xl:hidden'>
+                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='400' :display='3'>
+                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                            <div class='w-full h-full cursor-pointer'>
+                                <img :src='slide.image' alt='' class='h-full w-full'>
+                            </div>
+                        </slide>
+                    </carousel-3d>
+                </div>
+
+                <div class='hidden xl:block'>
+                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
+                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='530' :display='3'>
+                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                            <div class='w-full h-full cursor-pointer' @click='alert'>
+                                <img :src='slide.image' alt='' class='h-full w-full'>
+                            </div>
+                        </slide>
+                    </carousel-3d>
                 </div>
             </div>
 

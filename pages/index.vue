@@ -35,41 +35,15 @@
         <Register @modal='setModal' v-if='showModal' />
 
         <client-only>
-            <div class='lg:hidden'>
-                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='300'
-                             :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
-
-            <div class='hidden lg:block xl:hidden'>
-                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='400'
-                             :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
-
-            <div class='hidden xl:block'>
-                <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                             :controls-width='30' :controls-height='60' :clickable='false' :perspective='0' :space='530'
-                             :display='3'>
-                    <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                        <div class='w-full h-full cursor-pointer' @click='alert'>
-                            <img :src='slide.image' alt='' class='h-full w-full'>
-                        </div>
-                    </slide>
-                </carousel-3d>
-            </div>
+            <client-only>
+                <swiper class='swiper' :options='swiperOption'>
+                    <swiper-slide v-for='(item,index) in banner' :key='index'>
+                        <img :src='item.image' alt=''
+                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
+                    </swiper-slide>
+                    <div class='swiper-pagination' slot='pagination'></div>
+                </swiper>
+            </client-only>
         </client-only>
 
         <div class='mt-5 md:mt-[3rem]'>
