@@ -1,10 +1,10 @@
 <template>
     <div
-        class='absolute inset-0 z-40 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
+        class='absolute inset-0 z2 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
         <div
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-hidden inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
-                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] w-full overflow md:w-[30rem] rounded-lg px-7 py-4'>
+                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] w-full overflow md:w-[32rem] rounded-lg px-7 py-4'>
                     <div class='flex justify-between items-center mb-6'>
                         <div class='text-2xl flex items-center'>
                             <span class='text-white'>
@@ -199,42 +199,46 @@ export default {
     methods: {
         closeModal() {
             this.$emit('modal', this.showModal)
+            document.body.classList.remove('overflowHidden')
         },
 
         copyBankNumber() {
             this.$copyText(this.bank_number).then((e) => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    text: 'คัดลอกเรียบร้อย !',
-                    duration: 1000
-                });
+                this.$swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'คัดลอกเรียบร้อย !',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }).catch(e => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'error',
-                    text: 'คัดลอกล้มเหลว !',
-                    duration: 1000
-                });
+                this.$swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'คัดลอกล้มเหลว !',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
         },
 
         copyWalletNumber() {
             this.$copyText(this.bank_number).then((e) => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    text: 'คัดลอกเรียบร้อย !',
-                    duration: 1000
-
-                });
+                this.$swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'คัดลอกเรียบร้อย !',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }).catch(e => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'error',
-                    text: 'คัดลอกล้มเหลว !',
-                    duration: 1000
-                });
+                this.$swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'คัดลอกล้มเหลว !',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
         },
 

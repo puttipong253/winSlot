@@ -1,16 +1,19 @@
 <template>
     <div>
-        <client-only>
-                <swiper class='swiper' :options='swiperOption'>
+        <div class='mt-3'>
+            <client-only>
+                <swiper class='swiper z0' :options='swiperOption'>
                     <swiper-slide v-for='(item,index) in banner' :key='index'>
                         <img :src='item.image' alt=''
-                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
+                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[430px] xl:h-[510px]'>
                     </swiper-slide>
                     <div class='swiper-pagination' slot='pagination'></div>
                 </swiper>
-        </client-only>
+            </client-only>
+        </div>
 
-        <div class='mt-5 lg:mt-7 xl:mt-12'>
+
+        <div class='mt-5 lg:mt-7 xl:mt-12 '>
             <div class='flex flex-col-reverse sm:flex-row sm:justify-between py-3'>
                 <div class='text-white text-3xl md:text-4xl text-center'>
                     ยอดเงิน ของคุณ
@@ -58,17 +61,17 @@
                 </div>
             </div>
 
-            <div class='grid grid-cols-4 sm:grid-cols-2 xl:grid-cols-4 gap-x-2 gap-y-7 md:gap-x-6 md:gap-y-12 mt-7'>
+            <div class='grid grid-cols-4 md:grid-cols-4 gap-x-2 gap-y-7 md:gap-x-6 md:gap-y-12 mt-7'>
                 <div v-for='(item,index) in menu' :key='index'
-                     @click="modal(item)"
-                     class='hov border border-gray-1 text-gray-1 rounded-lg flex justify-center py-6 md:py-14 relative cursor-pointer transform transition duration-300 ease-in-out hover:-translate-y-3 hover:text-[#dca93d] hover:border-[#dca93d]'>
+                     @click='modal(item)'
+                     class='hov border border-gray-1 text-gray-1 rounded-lg flex justify-center py-6 md:py-10 lg:py-14 relative cursor-pointer transform transition duration-300 ease-in-out hover:-translate-y-3 hover:text-[#dca93d] hover:border-[#dca93d]'>
                     <svg-icon
                         :name='item.icon'
-                        class='w-[35px] h-[35px] md:w-[100px] md:h-[100px] xl:w-[140px] xl:h-[140px]'
+                        class='w-[35px] h-[35px] md:w-[70px] md:h-[70px] xl:w-[140px] xl:h-[140px]'
                     />
                     <div class='absolute -bottom-3 md:bottom-[-1.2rem]'>
                         <button
-                            class='text-white bg-gray-1 text-[11px] md:text-sm md:text-xl rounded-full px-2 py-1 md:px-7 md:py-2'>
+                            class='text-white bg-gray-1 text-[10px] md:text-sm md:text-xl rounded-full px-2 py-1 md:px-7 md:py-2'>
                             {{ item.name }}
                         </button>
                     </div>
@@ -76,21 +79,23 @@
             </div>
 
             <div v-if='showModal'>
-                <MenuModal @modal='setModal' :modalStatus='modalStatus'/>
+                <MenuModal @modal='setModal' :modalStatus='modalStatus' />
             </div>
 
             <div class='text-white mt-[3rem] md:mt-[5rem]'>
                 <div class='text-2xl md:text-3xl pb-[10px] md:pb-[20px]'>
                     บัญชีเกมส์ ของเรา
                 </div>
-                <div class='flex justify-between'>
-                    <div class='text-base md:text-lg font-light'>
-                        ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
-                    </div>
+
+                <div class='text-base md:text-lg font-light mb-10'>
+                    ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
                 </div>
+
                 <div class='lg:hidden'>
-                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='300' :display='3'>
+                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                 :controls-next-html="'&#10093;'"
+                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                 :space='300' :display='3'>
                         <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                             <div class='w-full h-full cursor-pointer'>
                                 <img :src='slide.image' alt='' class='h-full w-full'>
@@ -100,8 +105,10 @@
                 </div>
 
                 <div class='hidden lg:block xl:hidden'>
-                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='400' :display='3'>
+                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                 :controls-next-html="'&#10093;'"
+                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                 :space='400' :display='3'>
                         <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                             <div class='w-full h-full cursor-pointer'>
                                 <img :src='slide.image' alt='' class='h-full w-full'>
@@ -111,8 +118,10 @@
                 </div>
 
                 <div class='hidden xl:block'>
-                    <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092; '" :controls-next-html="'&#10093;'"
-                                 :controls-width="30" :controls-height="60" :clickable="false" :perspective='0' :space='530' :display='3'>
+                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                 :controls-next-html="'&#10093;'"
+                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                 :space='530' :display='3'>
                         <slide v-for='(slide, i) in slides' :key='i' :index='i'>
                             <div class='w-full h-full cursor-pointer' @click='alert'>
                                 <img :src='slide.image' alt='' class='h-full w-full'>
@@ -177,7 +186,6 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import global from '../../mixins/global'
 import MenuModal from '../../components/menuModal'
-
 
 export default {
     layout: 'home',
@@ -260,10 +268,10 @@ export default {
             banner: [
                 {
                     image: require('../../assets/image/slot1.png')
+                },
+                {
+                    image: require('../../assets/image/slot1.png')
                 }
-                // {
-                //     image: require('../assets/image/50825.jpg')
-                // }
             ],
             event: [
                 {
@@ -308,6 +316,7 @@ export default {
 
     methods: {
         modal(item) {
+            document.body.classList.add('overflowHidden')
             this.showModal = true
             this.modalStatus = item.nameEng
             if (item.path !== '') {
@@ -320,7 +329,7 @@ export default {
         },
 
         alert() {
-          alert('test')
+            alert('test')
         }
     }
 }
@@ -333,6 +342,7 @@ export default {
         box-shadow: 0 5px 10px rgba(240, 106, 9, 0.4);
     }
 }
+
 //.hov:hover {
 //    background: linear-gradient(180deg, #BE7A22 0%, #FFCF5A 100%)
 //}
@@ -345,5 +355,18 @@ export default {
 
 .z0 {
     z-index: 0;
+}
+
+.overflow {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #1D2936;
+        border-radius: 20px;
+    }
 }
 </style>

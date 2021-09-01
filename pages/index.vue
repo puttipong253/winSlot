@@ -34,20 +34,20 @@
 
         <Register @modal='setModal' v-if='showModal' />
 
-        <client-only>
+        <div class='mt-3'>
             <client-only>
-                <swiper class='swiper' :options='swiperOption'>
+                <swiper class='swiper z0' :options='swiperOption'>
                     <swiper-slide v-for='(item,index) in banner' :key='index'>
                         <img :src='item.image' alt=''
-                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[450px] xl:h-[560px]'>
+                             class='object-cover w-full h-[180px] md:h-[350px] lg:h-[430px] xl:h-[510px]'>
                     </swiper-slide>
                     <div class='swiper-pagination' slot='pagination'></div>
                 </swiper>
             </client-only>
-        </client-only>
+        </div>
 
-        <div class='mt-5 md:mt-[3rem]'>
-            <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-7 text-white'>
+        <div class='md:mt-[2rem]'>
+            <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-3 md:py-7 text-white'>
                 <div v-for='(items,index) in service' :key='index'
                      class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
                     <img :src='items.image' alt='' class='mx-auto'>

@@ -117,10 +117,16 @@ export default {
             toggleModal: true,
         }
     },
+
+    mounted() {
+        document.body.classList.add('overflowHidden')
+    },
+
     methods: {
         closeModal() {
             this.toggleModal = !this.toggleModal
             this.$emit('modal', this.toggleModal)
+            document.body.classList.remove('overflowHidden')
         },
 
         onSubmitStep1(value) {

@@ -95,7 +95,7 @@ export default {
             tel: '',
             pin: '',
         }
-    }
+    },
 }
 </script>
 

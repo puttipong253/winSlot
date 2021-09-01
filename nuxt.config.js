@@ -32,6 +32,7 @@ export default {
         { src: '~/plugins/vue-clipboard2.js', ssr: false },
         { src: '~/plugins/vue-notification.js', ssr: false },
         { src: '~/plugins/vue-carousel-3d.js', ssr: false },
+        { src: '~/plugins/vue-sweetalert2.js', ssr: false },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,7 +53,15 @@ export default {
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [],
+    modules: [
+        [
+            'vue-sweetalert2/nuxt',
+            {
+                confirmButtonColor: '#2F80ED',
+                cancelButtonColor: '#ff7674'
+            }
+        ],
+    ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {

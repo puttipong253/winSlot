@@ -63,6 +63,7 @@ export default {
     methods: {
         closeModal() {
             this.$emit('modal', this.showModal)
+            document.body.classList.remove('overflowHidden')
         }
     }
 

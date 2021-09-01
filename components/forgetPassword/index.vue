@@ -161,6 +161,7 @@ export default {
         closeModal() {
             this.toggleModal = !this.toggleModal
             this.$emit('modal', this.toggleModal)
+            document.body.classList.remove('overflowHidden')
         },
 
         onSubmit() {

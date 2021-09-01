@@ -2,8 +2,12 @@
 @import "tailwind";
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap');
 
-html, body {
+body {
     font-family: 'Prompt', sans-serif !important;
+}
+
+.overflowHidden {
+    overflow: hidden;
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
@@ -162,36 +166,36 @@ html, body {
 
 @media screen and (min-width: 1280px) {
     .carousel-3d-container  {
-        height: 393px !important;
+        height: 323px !important;
     }
 
     .carousel-3d-slider {
-        width: 572px !important;
-        height: 393px !important;
+        width: 522px !important;
+        height: 323px !important;
         border-radius: 25px !important;
     }
 
     .carousel-3d-slide.current {
-        width: 572px !important;
-        height: 393px !important;
+        width: 522px !important;
+        height: 323px !important;
         border-radius: 25px !important;
     }
 
     .carousel-3d-slide {
-        width: 572px !important;
-        height: 393px !important;
+        width: 522px !important;
+        height: 323px !important;
         border-radius: 25px !important;
     }
 
     .carousel-3d-slide.right-1 {
-        width: 572px !important;
-        height: 393px !important;
+        width: 522px !important;
+        height: 323px !important;
         border-radius: 25px !important;
     }
 
     .carousel-3d-slide.left-1 {
-        width: 572px !important;
-        height: 393px !important;
+        width: 522px !important;
+        height: 323px !important;
         border-radius: 25px !important;
     }
 

@@ -97,6 +97,10 @@ export default {
         }
     },
 
+    mounted() {
+        document.body.classList.add('overflowHidden')
+    },
+
     methods: {
         setModal(value) {
             this.showModal = value

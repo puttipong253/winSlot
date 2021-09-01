@@ -22,7 +22,7 @@
                         </div>
                         <button
                             class='text-xs md:text-base text-white bg-gradient-to-b font-light from-gold-1 to-gold-2 px-7 py-1 rounded-full'
-                            @click='toggleModal = !toggleModal'
+                            @click='login'
                         >
                             เข้าสู่ระบบ
                         </button>
@@ -268,11 +268,17 @@ export default {
         closeModal() {
             this.toggleModal = !this.toggleModal
             this.loginStatus = 'login'
+            document.body.classList.remove('overflowHidden')
         },
 
         setModal(value) {
             this.loginStatus = 'login'
             this.toggleModal = value
+        },
+
+        login() {
+            this.toggleModal = !this.toggleModal
+            document.body.classList.add('overflowHidden')
         }
     }
 }
