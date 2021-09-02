@@ -243,7 +243,7 @@ export default {
                 {
                     icon: 'octicon_gift-24',
                     name: 'โปรโมชัน',
-                    path: 'promotions',
+                    path: 'member/promotions',
                     nameEng: 'promotions'
                 },
                 {
@@ -255,7 +255,7 @@ export default {
                 {
                     icon: 'la_user-cog',
                     name: 'ติดต่อแอดมิน',
-                    path: 'contact',
+                    path: '',
                     nameEng: 'contact'
                 },
                 {
@@ -316,11 +316,14 @@ export default {
 
     methods: {
         modal(item) {
-            document.body.classList.add('overflowHidden')
+
             this.showModal = true
             this.modalStatus = item.nameEng
             if (item.path !== '') {
                 this.$router.push(item.path)
+            }
+            else {
+                document.body.classList.add('overflowHidden')
             }
         },
 

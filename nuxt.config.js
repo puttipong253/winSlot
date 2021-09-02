@@ -69,6 +69,6 @@ export default {
     },
 
     env: {
-        baseName: process.env.baseName
+        SITE_TITLE: process.env.SITE_TITLE
     }
 }

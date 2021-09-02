@@ -253,8 +253,8 @@ export default {
     },
 
     methods: {
-        baseName() {
-            return process.env.baseName
+        title() {
+            return process.env.SITE_TITLE
         },
 
         onSubmit() {
