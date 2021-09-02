@@ -5,7 +5,7 @@
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
                 <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] overflow md:w-[30rem] rounded-lg px-7 py-4'>
-                    <div class='flex justify-between items-center mb-6'>
+                    <div class='flex justify-between items-center mb-4'>
                         <div class='text-2xl flex items-center'>
                             <span class='text-white'>
                                 กิจกรรม
@@ -37,12 +37,17 @@
                             <div>- ถอนขั้นต่ำ 300 บาท</div>
                             <div>* ต้องทำตามเงื่อนไขด้านล่างให้ครบ</div>
                             <div>กติกา</div>
-                            <div>1. อัดคลิปรีวิวเว็บไซต์ ALLBETPUSSY888ลงในช่องยูทูปของตนเองที่มียอดผู้ติดตาม5,000คนหรือมากกว่า</div>
-                            <div>2. ติดแฮชแท็ก #ALLBETPUSSY888 #แจกเครดิตฟรี #slot #เกมสล็อต #สล็อตออนไลน์ #pussy888</div>
+                            <div>1. อัดคลิปรีวิวเว็บไซต์
+                                ALLBETPUSSY888ลงในช่องยูทูปของตนเองที่มียอดผู้ติดตาม5,000คนหรือมากกว่า
+                            </div>
+                            <div>2. ติดแฮชแท็ก #ALLBETPUSSY888 #แจกเครดิตฟรี #slot #เกมสล็อต #สล็อตออนไลน์ #pussy888
+                            </div>
                             <div>3. ชื่อคลิปของท่านต้องมีคำว่า "ALLBETPUSSY888" อยู่ภายในชื่อคลิป</div>
                             <div>4. รับเงินไปเลยฟรีๆ 300 บาท</div>
                             <div>5. ใส่ลิ้งค์เว็บลงในแคปชั่น https://bit.ly/2RLDLT7</div>
-                            <div>6. เขียนรีวิวเว็บลงในแคปชั่น เช่น ALLBETPUSSY888ถอนได้จริง, ALLBETPUSSY888เกมออนไลน์ได้เงินจริง</div>
+                            <div>6. เขียนรีวิวเว็บลงในแคปชั่น เช่น ALLBETPUSSY888ถอนได้จริง,
+                                ALLBETPUSSY888เกมออนไลน์ได้เงินจริง
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,6 +63,10 @@ export default {
         return {
             showModal: false
         }
+    },
+
+    mounted() {
+        document.body.classList.add('overflowHidden')
     },
 
     methods: {

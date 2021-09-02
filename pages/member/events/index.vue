@@ -9,7 +9,7 @@
 
         <div class='grid grid-cols-2 gap-5 mt-5 md:mt-10'>
             <div v-for='(items,index) in events' :key='index' class='bg-gray-3 rounded-md p-3 '>
-                <div class='grid grid-cols-1 md:grid-cols-2 gap-1 xl:gap-5'>
+                <div class='grid grid-cols-1 md:grid-cols-2 gap-1 xl:gap-5 cursor-pointer' @click="showModal = true">
                     <div class='h-[8rem] xl:h-[12rem]'>
                         <img :src='items.image' alt='' class='w-full h-full'>
                     </div>
@@ -28,7 +28,6 @@
         <div v-if='showModal'>
             <EventModal @modal='setModal' />
         </div>
-
     </div>
 </template>
 
@@ -41,7 +40,7 @@ export default {
     components: { EventModal },
     data() {
         return {
-            showModal: true,
+            showModal: false,
             events: [
                 {
                     image: require('~/assets/image/event-1.png'),
@@ -95,10 +94,6 @@ export default {
                 }
             ]
         }
-    },
-
-    mounted() {
-        document.body.classList.add('overflowHidden')
     },
 
     methods: {

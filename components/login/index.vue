@@ -96,6 +96,12 @@ export default {
             pin: '',
         }
     },
+
+    methods: {
+        onSubmit() {
+
+        }
+    }
 }
 </script>
 
