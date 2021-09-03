@@ -73,7 +73,7 @@
                                                 <div class='relative mb-4'>
                                                     <ValidationProvider
                                                         name='เบอร์โทรศัพท์'
-                                                        rules='required'
+                                                        rules='required|min:10|max:10'
                                                         v-slot='{ errors }'
                                                     >
                                                         <input type='number'

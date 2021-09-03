@@ -121,7 +121,6 @@ export default {
 
     mounted() {
         document.body.classList.add('overflowHidden')
-        this.$store.dispatch('getBank')
     },
 
     methods: {

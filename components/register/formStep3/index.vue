@@ -151,13 +151,12 @@ export default {
     },
 
     mounted() {
-        console.log('test')
+        this.$store.dispatch('getBank')
     },
 
     computed: {
         options() {
             return this.$store.state.bank
-
         }
     },
 

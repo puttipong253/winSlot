@@ -66,6 +66,7 @@ export const actions = {
             if (res) {
                 context.commit('register', { res: res, phone_number: data.phone_number })
             }
+            return res
         } catch (e) {
             return e
         }

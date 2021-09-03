@@ -12,11 +12,10 @@
                     <div class='relative mb-7'>
                         <ValidationProvider
                             name='เบอร์โทรศัพท์'
-                            rules='min:10|max:10'
+                            rules='required|min:10|max:10'
                             v-slot='{ errors }'
                         >
                             <input type='number'
-
                                    class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
                                    v-model='phone_number'
                                    placeholder='เบอร์โทรศัพท์'>
@@ -56,11 +55,48 @@ export default {
 
     methods: {
         async onSubmit() {
-            await this.$store.dispatch('register', { phone_number: this.phone_number }).then(() => {
-                if (this.$store.state.next_register === true) {
-                    this.$emit('handleStep1', this.step + 2)
-                }else {
-                    this.$emit('handleStep1', this.step + 1)
+            await this.$store.dispatch('register', { phone_number: this.phone_number }).then((res) => {
+                if (res) {
+                    if (res.next_register === true) {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$emit('handleStep1', this.step + 2)
+                        })
+                    } else if (res.next_register === false) {
+                        if (res.otp_ref === '') {
+                            this.$swal.fire({
+                                position: 'center',
+                                icon: 'warning',
+                                title: res.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        } else {
+                            this.$swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: res.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.$emit('handleStep1', this.step + 1)
+                        }
+                    } else {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.phone_number = ''
+                        })
+                    }
                 }
             })
         }

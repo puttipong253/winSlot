@@ -72,18 +72,34 @@ export default {
                     otp_ref: this.otp_request
                 })
                 if (res) {
-                    this.$swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'รหัส OTP ถูกต้อง',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$emit('handleStep2', this.step + 1)
-                    })
+                    if (res.next_register === false) {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$emit('handleStep2', this.step + 1)
+                        })
+                    }
                 }
             } catch (e) {
-                console.log(e)
+                this.$swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: e.response.data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }
