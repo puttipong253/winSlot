@@ -4,7 +4,7 @@
         <div
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
-                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] overflow md:w-[30rem] rounded-lg px-7 py-4'>
+                <div class='bg-[#1E1E1E] min-h-full max-h-[40rem] overflow md:w-[32rem] rounded-lg px-7 py-4'>
                     <div class='flex justify-between items-center mb-4'>
                         <div class='text-2xl flex items-center'>
                             <span class='text-white'>
