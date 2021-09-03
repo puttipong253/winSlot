@@ -12,7 +12,6 @@
             </client-only>
         </div>
 
-
         <div class='mt-5 lg:mt-7 xl:mt-12 '>
             <div class='flex flex-col-reverse sm:flex-row sm:justify-between py-3'>
                 <div class='text-white text-3xl md:text-4xl text-center'>
@@ -312,6 +311,10 @@ export default {
                 }
             }
         }
+    },
+
+    mounted() {
+        document.body.classList.remove('overflowHidden')
     },
 
     methods: {

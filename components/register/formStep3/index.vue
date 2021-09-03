@@ -62,8 +62,10 @@
                             rules='required'
                             v-slot='{ errors }'
                         >
-                            <v-select :options='options' placeholder='เลือกธนาคารของคุณ'
+                            <v-select :options='options'
+                                      placeholder='เลือกธนาคารของคุณ'
                                       v-model='bank'
+                                      label='bank_name'
                                       class='style-chooser pl-[38px] bg-gray-1 text-white rounded-md py-[4px]'></v-select>
                             <div class='absolute top-2 left-3'>
                                 <svg-icon
@@ -104,12 +106,12 @@
                     <div class='relative mb-4'>
                         <ValidationProvider
                             name='รหัสผู้แนะนำ'
-                            rules='required'
+                            rules=''
                             v-slot='{ errors }'
                         >
                             <input type='text'
                                    class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                   v-model='code'
+                                   v-model='refer_id'
                                    placeholder='รหัสผู้แนะนำ'>
                             <div class='absolute top-2 left-3'>
                                 <svg-icon
@@ -136,26 +138,40 @@
 <script>
 export default {
     name: 'step3',
-    data () {
+    data() {
         return {
             last_name: '',
             first_name: '',
             bank: '',
             bank_number: '',
-            code: '',
-            step: 3,
-            options: [
-                'ธนาคารกรุงไทย',
-                'ธนาคารกสิกรไทย',
-                'ธนาคารกรุงเทย'
-            ]
+            refer_id: '',
+            step: 3
+
+        }
+    },
+
+    mounted() {
+        console.log('test')
+    },
+
+    computed: {
+        options() {
+            return this.$store.state.bank
+
         }
     },
 
     methods: {
         onSubmit() {
-            this.$emit('handleStep3', this.step + 1)
-        },
+            this.$emit('handleStep3', {
+                step: this.step + 1,
+                last_name: this.last_name,
+                first_name: this.first_name,
+                bank: this.bank,
+                bank_number: this.bank_number,
+                refer_id: this.refer_id
+            })
+        }
     }
 }
 </script>

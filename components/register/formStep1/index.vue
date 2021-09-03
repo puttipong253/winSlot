@@ -12,12 +12,13 @@
                     <div class='relative mb-7'>
                         <ValidationProvider
                             name='เบอร์โทรศัพท์'
-                            rules='required'
+                            rules='min:10|max:10'
                             v-slot='{ errors }'
                         >
                             <input type='number'
+
                                    class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                   v-model='tel'
+                                   v-model='phone_number'
                                    placeholder='เบอร์โทรศัพท์'>
                             <div class='absolute top-2 left-3'>
                                 <svg-icon
@@ -46,17 +47,23 @@
 <script>
 export default {
     name: 'step1',
-    data () {
+    data() {
         return {
-            tel: '',
+            phone_number: '',
             step: 1
         }
     },
 
     methods: {
-        onSubmit() {
-            this.$emit('handleStep1', this.step + 1)
-        },
+        async onSubmit() {
+            await this.$store.dispatch('register', { phone_number: this.phone_number }).then(() => {
+                if (this.$store.state.next_register === true) {
+                    this.$emit('handleStep1', this.step + 2)
+                }else {
+                    this.$emit('handleStep1', this.step + 1)
+                }
+            })
+        }
     }
 }
 </script>

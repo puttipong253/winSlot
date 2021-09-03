@@ -87,7 +87,7 @@
                         </div>
 
                         <div v-if='step === 4'>
-                            <FormStep4 @handleStep3='onSubmitStep4'/>
+                            <FormStep4 @handleStep4='onSubmitStep4' :formRegister='form_register'/>
                         </div>
 
                     </div>
@@ -115,11 +115,13 @@ export default {
         return {
             step: 1,
             toggleModal: true,
+            form_register: []
         }
     },
 
     mounted() {
         document.body.classList.add('overflowHidden')
+        this.$store.dispatch('getBank')
     },
 
     methods: {
@@ -138,11 +140,13 @@ export default {
         },
 
         onSubmitStep3(value) {
-            this.step = value
+            this.step = value.step
+            this.form_register = value
+            console.log(value)
         },
 
         onSubmitStep4(value) {
-            this.step = value
+            this.closeModal()
         },
     }
 }

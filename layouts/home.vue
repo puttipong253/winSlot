@@ -14,7 +14,7 @@
                     <div class='text-xl lg:text-2xl text-white'>
                         {{ title() }}
                     </div>
-                    <div class='cursor-pointer'>
+                    <div class='cursor-pointer' @click='logout'>
                         <svg-icon
                             name='ls_logout'
                             width='25'
@@ -68,7 +68,7 @@
                 </div>
 
                 <div v-if='showModal' class='text-black'>
-                    <Contact  @modal='setModal'/>
+                    <Contact @modal='setModal' />
                 </div>
             </footer>
         </div>
@@ -114,6 +114,17 @@ export default {
         }
     },
 
+    mounted() {
+        const token = localStorage.getItem('winSlotToken')
+        if (!token) {
+            this.$router.push('/')
+        }
+        // const date = new Date()
+        // if (this.$store.state.token_expiration <= date) {
+        //     console.log(date)
+        // }
+    },
+
     methods: {
         title() {
             return process.env.SITE_TITLE
@@ -130,6 +141,11 @@ export default {
 
         setModal(value) {
             this.showModal = value
+        },
+
+        logout() {
+            localStorage.removeItem('winSlotToken')
+            this.$router.push('/')
         }
     }
 }

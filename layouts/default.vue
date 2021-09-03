@@ -5,16 +5,20 @@
             <header class='py-2 md:py-3 px-3 md:px-7 rounded-b-xl'>
                 <div class='flex justify-between items-center'>
                     <div class='cursor-pointer'>
-                        <img src='../assets/image/logo.png' alt='' class='w-[60px] h-[60px] md:w-[75px] md:h-[75px]' @click="$router.push('/')">
+                        <img src='../assets/image/logo.png' alt='' class='w-[60px] h-[60px] md:w-[75px] md:h-[75px]'
+                             @click="$router.push('/')">
                     </div>
                     <div class='flex items-center'>
-                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('events')">
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'
+                             @click="$router.push('events')">
                             กิจกรรม
                         </div>
-                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('randomCard')">
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'
+                             @click="$router.push('randomCard')">
                             เปิดไพ่
                         </div>
-                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click="$router.push('promotions')">
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'
+                             @click="$router.push('promotions')">
                             โปรโมชั่น
                         </div>
                         <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
@@ -74,7 +78,7 @@
                                                     >
                                                         <input type='number'
                                                                class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                                               v-model='tel'
+                                                               v-model='phone_number'
                                                                placeholder='เบอร์โทรศัพท์'>
                                                         <div class='absolute top-2 left-3'>
                                                             <svg-icon
@@ -97,7 +101,7 @@
                                                     >
                                                         <input type='password'
                                                                class='w-full bg-gray-1 text-white font-light py-2 pl-12 rounded-md focus:outline-none'
-                                                               v-model='pin'
+                                                               v-model='password'
                                                                placeholder='รหัสผ่าน'>
                                                         <div class='absolute top-2 left-3'>
                                                             <svg-icon
@@ -137,7 +141,8 @@
                                             <div class='text-white mr-3'>
                                                 คุณยังไม่มีบัญชี?
                                             </div>
-                                            <div @click="loginStatus = 'register'" class='underline text-yellow font-light cursor-pointer'>
+                                            <div @click="loginStatus = 'register'"
+                                                 class='underline text-yellow font-light cursor-pointer'>
                                                 สมัครสมาชิกใหม่
                                             </div>
                                         </div>
@@ -207,8 +212,8 @@ export default {
     components: { ForgetPassword, Register },
     data() {
         return {
-            tel: '',
-            pin: '',
+            phone_number: '',
+            password: '',
             loginStatus: 'login',
             toggleModal: false,
             bank: [
@@ -257,9 +262,9 @@ export default {
             return process.env.SITE_TITLE
         },
 
-        onSubmit() {
+        async onSubmit() {
             try {
-
+                await this.$store.dispatch('login', { phone_number: this.phone_number, password: this.password })
             } catch (e) {
                 return e
             }
@@ -268,6 +273,8 @@ export default {
         closeModal() {
             this.toggleModal = !this.toggleModal
             this.loginStatus = 'login'
+            this.phone_number = ''
+            this.password = ''
             document.body.classList.remove('overflowHidden')
         },
 

@@ -30,6 +30,7 @@
                                 {{ errors[0] }}
                             </small>
                         </ValidationProvider>
+                        <div class='text-white mt-2'>otp_ref: {{ otp_request }}</div>
                     </div>
 
                     <button
@@ -46,17 +47,45 @@
 <script>
 export default {
     name: 'step2',
-    data () {
+    data() {
         return {
             otp: '',
             step: 2
         }
     },
 
-    methods: {
-        onSubmit() {
-            this.$emit('handleStep2', this.step + 1)
+    computed: {
+        otp_request() {
+            return this.$store.state.otp_ref
         },
+        phone() {
+            return this.$store.state.phone_number
+        }
+    },
+
+    methods: {
+        async onSubmit() {
+            try {
+                let res = await this.$axios.$post('/auth/submit-verify-otp', {
+                    phone_number: this.phone,
+                    otp_number: this.otp,
+                    otp_ref: this.otp_request
+                })
+                if (res) {
+                    this.$swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'รหัส OTP ถูกต้อง',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$emit('handleStep2', this.step + 1)
+                    })
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
     }
 }
 </script>

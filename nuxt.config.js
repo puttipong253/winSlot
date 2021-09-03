@@ -54,6 +54,8 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
+        '@nuxtjs/axios',
+        '@nuxtjs/auth-next',
         [
             'vue-sweetalert2/nuxt',
             {
@@ -62,6 +64,32 @@ export default {
             }
         ],
     ],
+
+    // auth: {
+    //     strategies: {
+    //         cookie: {
+    //             cookie: {
+    //                 // (optional) If set we check this cookie existence for loggedIn check
+    //                 name: 'XSRF-TOKEN',
+    //             },
+    //             endpoints: {
+    //                 // (optional) If set, we send a get request to this endpoint before login
+    //                 csrf: {
+    //                     url: ''
+    //                 }
+    //             }
+    //         },
+    //         'laravelSanctum': {
+    //             provider: 'laravel/sanctum',
+    //             url: 'http://127.0.0.1:8000',
+    //             endpoints: {
+    //                 login: {
+    //                     url: '/api/frontend/v1/auth/submit-login'
+    //                 }
+    //             }
+    //         },
+    //     }
+    // },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
