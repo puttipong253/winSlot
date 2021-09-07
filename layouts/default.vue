@@ -35,11 +35,11 @@
 
                 <div v-if='toggleModal'>
                     <div v-if="loginStatus === 'login'"
-                         class='absolute inset-0 z-40 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
+                         class='absolute inset-0 z-50 bg-opacity-[0.8] bg-black transition duration-150 ease-in-out'>
                         <div
                             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
                             <div class='relative mx-auto'>
-                                <div class='bg-[#1E1E1E] w-full md:w-[30rem] rounded-lg px-7 py-4'>
+                                <div class='bg-[#1E1E1E] w-[22rem] md:w-[30rem] rounded-lg px-7 py-4'>
                                     <div class='flex justify-between items-center mb-6'>
                                         <div class='text-2xl flex items-center'>
                                             <span

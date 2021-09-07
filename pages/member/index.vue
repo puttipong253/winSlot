@@ -324,7 +324,6 @@ export default {
 
     mounted() {
         document.body.classList.remove('overflowHidden')
-        this.$store.dispatch('getToken')
     },
 
     methods: {

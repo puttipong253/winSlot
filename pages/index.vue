@@ -251,10 +251,6 @@ export default {
         }
     },
 
-    mounted() {
-        this.$store.dispatch('getToken')
-    },
-
     methods: {
         setModal(value) {
             this.showModal = value

@@ -67,6 +67,15 @@ export default {
                         }).then(() => {
                             this.$emit('handleStep1', this.step + 2)
                         })
+                    } else if (res.next_step === true) {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        this.$emit('handleStep1', this.step + 1)
                     } else if (res.next_register === false) {
                         if (res.otp_ref === '') {
                             this.$swal.fire({

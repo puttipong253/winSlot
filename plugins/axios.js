@@ -1,3 +1,4 @@
 export default async ({ $axios, store }) => {
-    $axios.defaults.headers.common['Authorization'] = store.state.token ? `Bearer ${store.state.token}` : '';
+    $axios.defaults.withCredentials = true
+    $axios.defaults.baseURL = process.env.API_URL
 }

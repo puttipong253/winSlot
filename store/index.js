@@ -29,10 +29,6 @@ export const mutations = {
         state.bank = payload
     },
 
-    getToken(state, payload) {
-        state.token = payload
-    },
-
     logout(state, payload) {
         state.token = ''
     }
@@ -42,24 +38,26 @@ export const mutations = {
 export const actions = {
     async login(context, data) {
         try {
-            let res = await this.$axios.$post('/auth/submit-login', {
-                phone_number: data.phone_number,
-                password: data.password
-            })
-            if (res) {
-                const token = process.env.TOKEN_NAME
-                localStorage.setItem(token, res.token)
-                context.commit('login', res)
-                this.$swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: res.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    this.$router.push('/member')
+            await this.$axios.$get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(async () => {
+                let res = await this.$axios.$post('/auth/submit-login', {
+                    phone_number: data.phone_number,
+                    password: data.password
                 })
-            }
+                if (res) {
+                    const token = process.env.TOKEN_NAME
+                    localStorage.setItem(token, res.token)
+                    context.commit('login', res)
+                    this.$swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: res.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push('/member')
+                    })
+                }
+            })
         } catch (e) {
             this.$swal.fire({
                 position: 'center',
@@ -79,30 +77,17 @@ export const actions = {
     },
 
     async register(context, data) {
-        try {
-            let res = await this.$axios.$post('/auth/submit-request-otp', { phone_number: data.phone_number })
-            if (res) {
-                context.commit('register', { res: res, phone_number: data.phone_number })
-            }
-            return res
-        } catch (e) {
-            return e
+        await this.$axios.$get('http://localhost:8000/sanctum/csrf-cookie')
+        let res = await this.$axios.$post('/auth/submit-request-otp', { phone_number: data.phone_number })
+        if (res) {
+            context.commit('register', { res: res, phone_number: data.phone_number })
         }
-    },
-
-    async getToken(context) {
-      try {
-          let key = process.env.TOKEN_NAME
-          let token = localStorage.getItem(key)
-          context.commit('getToken', token)
-      } catch (e) {
-          return e
-      }
+        return res
     },
 
     async getBank(context, data) {
         try {
-            let res = await this.$axios.$post('/general/get-bank')
+            let res = await this.$axios.$get('/general/get-bank')
             if (res) {
                 context.commit('bank', res.data.map((item) => {
                     return {
