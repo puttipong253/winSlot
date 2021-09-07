@@ -27,6 +27,7 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '~/plugins/vee-validate.js',
+        '~/plugins/axios.js',
         { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
         { src: '~/plugins/vue-select.js', ssr: false },
         { src: '~/plugins/vue-clipboard2.js', ssr: false },
@@ -65,31 +66,9 @@ export default {
         ],
     ],
 
-    // auth: {
-    //     strategies: {
-    //         cookie: {
-    //             cookie: {
-    //                 // (optional) If set we check this cookie existence for loggedIn check
-    //                 name: 'XSRF-TOKEN',
-    //             },
-    //             endpoints: {
-    //                 // (optional) If set, we send a get request to this endpoint before login
-    //                 csrf: {
-    //                     url: ''
-    //                 }
-    //             }
-    //         },
-    //         'laravelSanctum': {
-    //             provider: 'laravel/sanctum',
-    //             url: 'http://127.0.0.1:8000',
-    //             endpoints: {
-    //                 login: {
-    //                     url: '/api/frontend/v1/auth/submit-login'
-    //                 }
-    //             }
-    //         },
-    //     }
-    // },
+    axios: {
+        baseURL: process.env.API_URL
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
@@ -97,6 +76,8 @@ export default {
     },
 
     env: {
-        SITE_TITLE: process.env.SITE_TITLE
+        SITE_TITLE: process.env.SITE_TITLE,
+        TOKEN_NAME: process.env.TOKEN_NAME,
+        API_URL: process.env.API_URL
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class='bg-opacity-[0.95] bg-background h-full relative pb-10'>
+    <div class='bg-opacity-[0.95] bg-background min-h-screen max-h-full relative pb-10'>
         <img src='../assets/image/money.png' alt='' class='opacity-[0.8] h-screen absolute z1'>
         <div class='container mx-auto px-2'>
             <header class='bg-gradient-to-b from-gold-1 to-gold-2 py-2 md:py-3 px-3 md:px-7 rounded-b-xl'>
@@ -24,7 +24,7 @@
                 </div>
             </header>
 
-            <div class='container mx-auto px-3 md:px-7 py-2 md:py-5 xl:py-9'>
+            <div class='container mx-auto py-2 md:py-5 xl:py-9'>
                 <Nuxt />
             </div>
 
@@ -115,7 +115,8 @@ export default {
     },
 
     mounted() {
-        const token = localStorage.getItem('winSlotToken')
+        const key = process.env.TOKEN_NAME
+        const token = localStorage.getItem(key)
         if (!token) {
             this.$router.push('/')
         }
@@ -127,7 +128,7 @@ export default {
 
     methods: {
         title() {
-            return process.env.SITE_TITLE
+            return process.env.TOKEN_NAME
         },
 
         menuFooter(value) {
@@ -144,8 +145,7 @@ export default {
         },
 
         logout() {
-            localStorage.removeItem('winSlotToken')
-            this.$router.push('/')
+            this.$store.dispatch("logout")
         }
     }
 }

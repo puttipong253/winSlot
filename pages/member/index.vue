@@ -18,6 +18,7 @@
                     ยอดเงิน ของคุณ
                 </div>
                 <button
+                    @click='playGameModal'
                     class='flex justify-center items-center bg-gradient-to-b from-gold-1 to-gold-2 px-10 py-1 text-xl text-white rounded-full mb-5 sm:mb-0'>
                     <svg-icon
                         name='ri_gamepad-fill'
@@ -26,6 +27,10 @@
                     />
                     <span class='ml-3'>เข้าเล่นเกมส์</span>
                 </button>
+            </div>
+
+            <div v-if='playGame'>
+                <PlayGame @modal='setPlayGame' />
             </div>
 
             <div class='flex flex-col sm:flex-row justify-between py-0 sm:py-3'>
@@ -89,45 +94,46 @@
                 <div class='text-base md:text-lg font-light mb-10'>
                     ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
                 </div>
+                <client-only>
+                    <div class='lg:hidden'>
+                        <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                     :controls-next-html="'&#10093;'"
+                                     :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                     :space='300' :display='3'>
+                            <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                                <div class='w-full h-full cursor-pointer'>
+                                    <img :src='slide.image' alt='' class='h-full w-full'>
+                                </div>
+                            </slide>
+                        </carousel-3d>
+                    </div>
 
-                <div class='lg:hidden'>
-                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
-                                 :controls-next-html="'&#10093;'"
-                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
-                                 :space='300' :display='3'>
-                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                            <div class='w-full h-full cursor-pointer'>
-                                <img :src='slide.image' alt='' class='h-full w-full'>
-                            </div>
-                        </slide>
-                    </carousel-3d>
-                </div>
+                    <div class='hidden lg:block xl:hidden'>
+                        <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                     :controls-next-html="'&#10093;'"
+                                     :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                     :space='400' :display='3'>
+                            <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                                <div class='w-full h-full cursor-pointer'>
+                                    <img :src='slide.image' alt='' class='h-full w-full'>
+                                </div>
+                            </slide>
+                        </carousel-3d>
+                    </div>
 
-                <div class='hidden lg:block xl:hidden'>
-                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
-                                 :controls-next-html="'&#10093;'"
-                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
-                                 :space='400' :display='3'>
-                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                            <div class='w-full h-full cursor-pointer'>
-                                <img :src='slide.image' alt='' class='h-full w-full'>
-                            </div>
-                        </slide>
-                    </carousel-3d>
-                </div>
-
-                <div class='hidden xl:block'>
-                    <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
-                                 :controls-next-html="'&#10093;'"
-                                 :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
-                                 :space='530' :display='3'>
-                        <slide v-for='(slide, i) in slides' :key='i' :index='i'>
-                            <div class='w-full h-full cursor-pointer' @click='alert'>
-                                <img :src='slide.image' alt='' class='h-full w-full'>
-                            </div>
-                        </slide>
-                    </carousel-3d>
-                </div>
+                    <div class='hidden xl:block'>
+                        <carousel-3d :controls-visible='true' :controls-prev-html="'&#10092; '"
+                                     :controls-next-html="'&#10093;'"
+                                     :controls-width='30' :controls-height='60' :clickable='false' :perspective='0'
+                                     :space='530' :display='3'>
+                            <slide v-for='(slide, i) in slides' :key='i' :index='i'>
+                                <div class='w-full h-full cursor-pointer' @click='alert'>
+                                    <img :src='slide.image' alt='' class='h-full w-full'>
+                                </div>
+                            </slide>
+                        </carousel-3d>
+                    </div>
+                </client-only>
             </div>
 
             <div class='text-white mt-[3rem] md:mt-[4rem]'>
@@ -185,11 +191,13 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import global from '../../mixins/global'
 import MenuModal from '../../components/menuModal'
+import PlayGame from '../../components/playGame/index.js'
 
 export default {
     layout: 'home',
     mixins: [global],
     components: {
+        PlayGame,
         MenuModal,
         Swiper,
         SwiperSlide
@@ -208,6 +216,7 @@ export default {
                 }
             ],
             showModal: false,
+            playGame: false,
             modalStatus: '',
             user: {
                 bag: 0,
@@ -315,23 +324,30 @@ export default {
 
     mounted() {
         document.body.classList.remove('overflowHidden')
+        this.$store.dispatch('getToken')
     },
 
     methods: {
         modal(item) {
-
             this.showModal = true
             this.modalStatus = item.nameEng
             if (item.path !== '') {
                 this.$router.push(item.path)
-            }
-            else {
+            } else {
                 document.body.classList.add('overflowHidden')
             }
         },
 
         setModal(value) {
             this.showModal = value
+        },
+
+        playGameModal() {
+            this.playGame = !this.playGame
+        },
+
+        setPlayGame(value) {
+            this.playGame = value
         },
 
         alert() {

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export const state = () => ({
+    token: '',
     token_expiration: '',
     token_start: '',
     otp_ref: '',
@@ -26,7 +27,16 @@ export const mutations = {
 
     bank(state, payload) {
         state.bank = payload
+    },
+
+    getToken(state, payload) {
+        state.token = payload
+    },
+
+    logout(state, payload) {
+        state.token = ''
     }
+
 }
 
 export const actions = {
@@ -37,7 +47,8 @@ export const actions = {
                 password: data.password
             })
             if (res) {
-                localStorage.setItem('winSlotToken', res.token)
+                const token = process.env.TOKEN_NAME
+                localStorage.setItem(token, res.token)
                 context.commit('login', res)
                 this.$swal.fire({
                     position: 'center',
@@ -60,6 +71,13 @@ export const actions = {
         }
     },
 
+    async logout(context) {
+        let key = process.env.TOKEN_NAME
+        localStorage.removeItem(key)
+        context.commit('logout')
+        await this.$router.push('/')
+    },
+
     async register(context, data) {
         try {
             let res = await this.$axios.$post('/auth/submit-request-otp', { phone_number: data.phone_number })
@@ -70,6 +88,16 @@ export const actions = {
         } catch (e) {
             return e
         }
+    },
+
+    async getToken(context) {
+      try {
+          let key = process.env.TOKEN_NAME
+          let token = localStorage.getItem(key)
+          context.commit('getToken', token)
+      } catch (e) {
+          return e
+      }
     },
 
     async getBank(context, data) {

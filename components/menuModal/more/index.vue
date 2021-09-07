@@ -23,7 +23,7 @@
                     <div class='flex mb-3'>
                         <div class='grid grid-cols-3 md:grid-cols-4 gap-8 w-full'>
                             <div v-for='(items,index) in more' :key='index'>
-                                <div class='bg-[#242424] py-4 px-3 rounded-lg cursor-pointer shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-3'>
+                                <div @click="$router.push(items.path)" class='bg-[#242424] py-4 px-3 rounded-lg cursor-pointer shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-3'>
                                     <div class='flex justify-center'>
                                         <img :src='items.image' alt='' class='h-[45px]'>
                                     </div>
@@ -31,9 +31,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -49,27 +47,33 @@ export default {
             more: [
                 {
                     image: require('~/assets/image/ic_twotone-manage-search.png'),
-                    title: 'ประวัติ'
+                    title: 'ประวัติ',
+                    path: ''
                 },
                 {
                     image: require('~/assets/image/mdi_database-check-outline.png'),
-                    title: 'เช็คอิน'
+                    title: 'เช็คอิน',
+                    path: '/member/check-in'
                 },
                 {
                     image: require('~/assets/image/uil_fidget-spinner.png'),
-                    title: 'วงล้อ'
+                    title: 'วงล้อ',
+                    path: ''
                 },
                 {
                     image: require('~/assets/image/ic_outline-shopping-cart.png'),
-                    title: 'แลกรางวัล'
+                    title: 'แลกรางวัล',
+                    path: ''
                 },
                 {
                     image: require('~/assets/image/user.png'),
-                    title: 'ลำดับ'
+                    title: 'ลำดับ',
+                    path: ''
                 },
                 {
                     image: require('~/assets/image/mdi_cards.png'),
-                    title: 'เปิดไพ่'
+                    title: 'เปิดไพ่',
+                    path: ''
                 }
             ]
         }

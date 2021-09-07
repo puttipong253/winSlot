@@ -42,13 +42,6 @@
                                 <div class='bg-[#1E1E1E] w-full md:w-[30rem] rounded-lg px-7 py-4'>
                                     <div class='flex justify-between items-center mb-6'>
                                         <div class='text-2xl flex items-center'>
-                                            <!--                                        <div @click='closeModal' class='cursor-pointer'>-->
-                                            <!--                                            <svg-icon-->
-                                            <!--                                                name='eva_arrow-back-fill'-->
-                                            <!--                                                width='35'-->
-                                            <!--                                                height='35'-->
-                                            <!--                                            />-->
-                                            <!--                                        </div>-->
                                             <span
                                                 class='text-white'>เข้าสู่ระบบ</span>
                                         </div>
@@ -257,11 +250,11 @@ export default {
         }
     },
 
-    methods: {
-        title() {
-            return process.env.SITE_TITLE
-        },
+    mounted() {
+        this.$store.dispatch('logout')
+    },
 
+    methods: {
         async onSubmit() {
             try {
                 await this.$store.dispatch('login', { phone_number: this.phone_number, password: this.password })

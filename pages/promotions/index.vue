@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class='text-white text-2xl xl:text-4xl mt-5 md:mt-0 mb-2 md:mb-4'>
-            โปรโมชัน ของเรา
+            โปรโมชั่น ของเรา
         </div>
         <div class='text-white font-light mb-2 text-sm md:text-base'>
             ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
