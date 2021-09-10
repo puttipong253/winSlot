@@ -87,36 +87,37 @@ export default {
 
     methods: {
         async onSubmit() {
-            try {
-                let res = await this.$axios.$post('/auth/submit-register', {
-                    first_name: this.formRegister.first_name,
-                    last_name: this.formRegister.last_name,
-                    phone_number: this.phone,
-                    password: this.password,
-                    bank_code: this.formRegister.bank.bank_code,
-                    bank_number: this.formRegister.bank_number,
-                    refer_id: this.formRegister.refer_id
-                })
-                if (res) {
-                    this.$swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: res.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$emit('handleStep4', this.modal )
-                    })
-                }
-            } catch (e) {
-                this.$swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: e.response.data.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
+            this.$emit('handleStep4', this.modal)
+            // try {
+            //     let res = await this.$axios.$post('/auth/submit-register', {
+            //         first_name: this.formRegister.first_name,
+            //         last_name: this.formRegister.last_name,
+            //         phone_number: this.phone,
+            //         password: this.password,
+            //         bank_code: this.formRegister.bank.bank_code,
+            //         bank_number: this.formRegister.bank_number,
+            //         refer_id: this.formRegister.refer_id
+            //     })
+            //     if (res) {
+            //         this.$swal.fire({
+            //             position: 'center',
+            //             icon: 'success',
+            //             title: res.message,
+            //             showConfirmButton: false,
+            //             timer: 1500
+            //         }).then(() => {
+            //             this.$emit('handleStep4', this.modal )
+            //         })
+            //     }
+            // } catch (e) {
+            //     this.$swal.fire({
+            //         position: 'center',
+            //         icon: 'error',
+            //         title: e.response.data.message,
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     })
+            // }
         },
     }
 }

@@ -65,7 +65,6 @@
                             <v-select :options='options'
                                       placeholder='เลือกธนาคารของคุณ'
                                       v-model='bank'
-                                      label='bank_name'
                                       class='style-chooser pl-[38px] bg-gray-1 text-white rounded-md py-[4px]'></v-select>
                             <div class='absolute top-2 left-3'>
                                 <svg-icon
@@ -145,20 +144,29 @@ export default {
             bank: '',
             bank_number: '',
             refer_id: '',
-            step: 3
+            step: 3,
+            options: [
+                'ธนารคารกรุงไทย',
+                'ธนารคารกรุงเทพ',
+                'ธนารคารกสิกรไทย',
+                'ธนารคารทหารไทย',
+                'ธนารคารไทยพาณิชย์',
+                'ธนาคารกรุงศรีอยุธยา',
+                'ธนารคารออมสิน'
+            ]
 
         }
     },
 
-    mounted() {
-        this.$store.dispatch('getBank')
-    },
+    // mounted() {
+    //     this.$store.dispatch('getBank')
+    // },
 
-    computed: {
-        options() {
-            return this.$store.state.bank
-        }
-    },
+    // computed: {
+    //     options() {
+    //         return this.$store.state.bank
+    //     }
+    // },
 
     methods: {
         onSubmit() {

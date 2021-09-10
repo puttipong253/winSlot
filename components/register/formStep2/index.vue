@@ -30,7 +30,7 @@
                                 {{ errors[0] }}
                             </small>
                         </ValidationProvider>
-                        <div class='text-white mt-2'>otp_ref: {{ otp_request }}</div>
+                        <div class='text-white mt-2'>otp_ref: </div>
                     </div>
 
                     <button
@@ -54,53 +54,54 @@ export default {
         }
     },
 
-    computed: {
-        otp_request() {
-            return this.$store.state.otp_ref
-        },
-        phone() {
-            return this.$store.state.phone_number
-        }
-    },
+    // computed: {
+    //     otp_request() {
+    //         return this.$store.state.otp_ref
+    //     },
+    //     phone() {
+    //         return this.$store.state.phone_number
+    //     }
+    // },
 
     methods: {
         async onSubmit() {
-            try {
-                let res = await this.$axios.$post('/auth/submit-verify-otp', {
-                    phone_number: this.phone,
-                    otp_number: this.otp,
-                    otp_ref: this.otp_request
-                })
-                if (res) {
-                    if (res.next_register === false) {
-                        this.$swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    } else {
-                        this.$swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$emit('handleStep2', this.step + 1)
-                        })
-                    }
-                }
-            } catch (e) {
-                this.$swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: e.response.data.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
+            this.$emit('handleStep2', this.step + 1)
+            // try {
+            //     let res = await this.$axios.$post('/auth/submit-verify-otp', {
+            //         phone_number: this.phone,
+            //         otp_number: this.otp,
+            //         otp_ref: this.otp_request
+            //     })
+            //     if (res) {
+            //         if (res.next_register === false) {
+            //             this.$swal.fire({
+            //                 position: 'center',
+            //                 icon: 'error',
+            //                 title: res.message,
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             })
+            //         } else {
+            //             this.$swal.fire({
+            //                 position: 'center',
+            //                 icon: 'success',
+            //                 title: res.message,
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             }).then(() => {
+            //                 this.$emit('handleStep2', this.step + 1)
+            //             })
+            //         }
+            //     }
+            // } catch (e) {
+            //     this.$swal.fire({
+            //         position: 'center',
+            //         icon: 'error',
+            //         title: e.response.data.message,
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     })
+            // }
         }
     }
 }

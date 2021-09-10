@@ -250,17 +250,18 @@ export default {
         }
     },
 
-    mounted() {
-        this.$store.dispatch('logout')
-    },
+    // mounted() {
+    //     this.$store.dispatch('logout')
+    // },
 
     methods: {
         async onSubmit() {
-            try {
-                await this.$store.dispatch('login', { phone_number: this.phone_number, password: this.password })
-            } catch (e) {
-                return e
-            }
+            // try {
+            //     await this.$store.dispatch('login', { phone_number: this.phone_number, password: this.password })
+            // } catch (e) {
+            //     return e
+            // }
+            await this.$router.push('/member')
         },
 
         closeModal() {

@@ -32,7 +32,6 @@ export const mutations = {
     logout(state, payload) {
         state.token = ''
     }
-
 }
 
 export const actions = {

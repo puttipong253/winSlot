@@ -55,59 +55,60 @@ export default {
 
     methods: {
         async onSubmit() {
-            await this.$store.dispatch('register', { phone_number: this.phone_number }).then((res) => {
-                if (res) {
-                    if (res.next_register === true) {
-                        this.$swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$emit('handleStep1', this.step + 2)
-                        })
-                    } else if (res.next_step === true) {
-                        this.$swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        this.$emit('handleStep1', this.step + 1)
-                    } else if (res.next_register === false) {
-                        if (res.otp_ref === '') {
-                            this.$swal.fire({
-                                position: 'center',
-                                icon: 'warning',
-                                title: res.message,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        } else {
-                            this.$swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: res.message,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            this.$emit('handleStep1', this.step + 1)
-                        }
-                    } else {
-                        this.$swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.phone_number = ''
-                        })
-                    }
-                }
-            })
+            this.$emit('handleStep1', this.step + 1)
+            // await this.$store.dispatch('register', { phone_number: this.phone_number }).then((res) => {
+            //     if (res) {
+            //         if (res.next_register === true) {
+            //             this.$swal.fire({
+            //                 position: 'center',
+            //                 icon: 'success',
+            //                 title: res.message,
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             }).then(() => {
+            //                 this.$emit('handleStep1', this.step + 2)
+            //             })
+            //         } else if (res.next_step === true) {
+            //             this.$swal.fire({
+            //                 position: 'center',
+            //                 icon: 'success',
+            //                 title: res.message,
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             })
+            //             this.$emit('handleStep1', this.step + 1)
+            //         } else if (res.next_register === false) {
+            //             if (res.otp_ref === '') {
+            //                 this.$swal.fire({
+            //                     position: 'center',
+            //                     icon: 'warning',
+            //                     title: res.message,
+            //                     showConfirmButton: false,
+            //                     timer: 1500
+            //                 })
+            //             } else {
+            //                 this.$swal.fire({
+            //                     position: 'center',
+            //                     icon: 'success',
+            //                     title: res.message,
+            //                     showConfirmButton: false,
+            //                     timer: 1500
+            //                 })
+            //                 this.$emit('handleStep1', this.step + 1)
+            //             }
+            //         } else {
+            //             this.$swal.fire({
+            //                 position: 'center',
+            //                 icon: 'error',
+            //                 title: res.message,
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             }).then(() => {
+            //                 this.phone_number = ''
+            //             })
+            //         }
+            //     }
+            // })
         }
     }
 }

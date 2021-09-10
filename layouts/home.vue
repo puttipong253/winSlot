@@ -115,11 +115,11 @@ export default {
     },
 
     mounted() {
-        const key = process.env.TOKEN_NAME
-        const token = localStorage.getItem(key)
-        if (!token) {
-            this.$router.push('/')
-        }
+        // const key = process.env.TOKEN_NAME
+        // const token = localStorage.getItem(key)
+        // if (!token) {
+        //     this.$router.push('/')
+        // }
         // const date = new Date()
         // if (this.$store.state.token_expiration <= date) {
         //     console.log(date)
@@ -128,7 +128,7 @@ export default {
 
     methods: {
         title() {
-            return process.env.TOKEN_NAME
+            return process.env.SITE_TITLE
         },
 
         menuFooter(value) {
