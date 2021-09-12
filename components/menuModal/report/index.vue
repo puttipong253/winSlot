@@ -8,7 +8,7 @@
                     <div class='flex justify-between items-center mb-4'>
                         <div class='text-xl md:text-2xl flex items-center'>
                             <span class='text-white'>
-                                บัญชีสำหรับเติมเงิน
+                                หลักฐานการโอนเงิน
                             </span>
                         </div>
                         <div @click='closeModal' class='cursor-pointer'>
@@ -69,67 +69,44 @@
                             </div>
                         </div>
 
-                        <div class='w-full bg-gradient-to-b from-[#f47f1f] to-[#f26320] rounded-lg mt-4'>
-                            <div class='flex py-2 md:py-5 px-3'>
-                                <div class='hidden md:block'>
-                                    <img src='~/assets/image/qrcode.png' alt='' class='w-[180px]'>
+                        <div class='mt-3 bg-[#242424] rounded-lg p-2 md:p-4'>
+                            <div class='flex items-center border-b border-gray-4 pb-3'>
+                                <img src='~/assets/image/logoScb.png' alt='' width='30' class=''>
+                                <span class='ml-3 font-light text-base text-white'>ธนาคารไทยพาณิชย์</span>
+                            </div>
+                            <div class='flex justify-between font-light text-white border-b border-gray-4 py-2'>
+                                <div>
+                                    เลขที่บัญชี
                                 </div>
-
-                                <div class='text-white md:ml-3 w-full'>
-                                    <div class='flex items-center'>
-                                        <div class='md:hidden'>
-                                            <img src='~/assets/image/qrcode.png' alt='' class='w-[90px] md:w-[180px]'>
-                                        </div>
-
-                                        <div class='ml-2'>
-                                            <div class='text-xl md:text-2xl'>
-                                                True Wallet
-                                            </div>
-                                            <div class='text-xs font-light'>
-                                                Wallet by Truemoney Wallet
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class='flex justify-between mt-2 md:mt-5'>
-                                        <div class='font-light'>
-                                            <div class='mb-1'>
-                                                สายฟ้า โยธา
-                                            </div>
-                                            <div>
-                                                {{ wallet_number }}
-                                            </div>
-                                        </div>
-                                        <div class='flex items-end '>
-                                            <button
-                                                @click='copyWalletNumber'
-                                                class='flex bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 rounded-md'>
-                                                <svg-icon
-                                                    name='feather_save'
-                                                    width='16'
-                                                    height='16'
-                                                />
-                                                <span class='text-xs ml-1'>คัดลอก</span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <div>
+                                    {{ bank_number }}
                                 </div>
                             </div>
-                        </div>
-
-                        <notifications group='foo' position='bottom right' />
-
-                        <button class='w-full font-light mt-3 text-sm md:text-base text-white bg-[#53A451] py-2 rounded-full'>
-                            รับการแจ้งเตือน ฝาก-ถอน ผ่าน LINE
-                        </button>
-
-                        <button @click='reportToggle'
-                                class='w-full font-light mt-3 text-sm md:text-base text-white bg-[#FF4359] py-2 rounded-full'>
-                            หากเงินไม่เข้าภายใน 5 นาที กดแจ้งที่นี่
-                        </button>
-
-                        <div v-if='report' class='mt-5 bg-[#242424] rounded-lg p-4'>
-                            <Report @modal='setModal'/>
+                            <div class='font-light text-white border-b border-gray-4 py-2'>
+                                <div class=''>
+                                    จำนวนเงิน
+                                </div>
+                                <div class='flex justify-end text-xl md:text-2xl items-center'>
+                                    <input type='text' v-model='price'
+                                           class='w-40 bg-[#242424] text-lg md:text-xl focus:outline-none text-right pt-1'
+                                           placeholder='กรอกจำนวนเงิน'>
+                                    <span class='ml-3'>บาท</span>
+                                </div>
+                            </div>
+                            <div class='relative mt-5 flex w-full'>
+                                <input type='text' v-model='imageFile.name' placeholder='แนบหลักฐานการโอนเงิน'
+                                       class='w-full pl-3 rounded-l-lg py-2 font-light text-sm' disabled>
+                                <div
+                                    class='flex items-center justify-center text-white bg-[#1E1E1E] w-[130px] py-2 rounded-r-lg text-xs px-3'>
+                                    Choose File
+                                </div>
+                                <input type='file' class='absolute opacity-0 w-full cursor-pointer'
+                                       @change='onFileChange'>
+                            </div>
+                            <button
+                                class='bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 text-white rounded-full w-full mt-5 text-sm md:text-base'>
+                                ยืนยัน
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -139,17 +116,14 @@
 </template>
 
 <script>
-import Report from '../report'
 export default {
-    name: 'topUp',
-    components: { Report },
+    name: 'report',
     data() {
         return {
             price: '',
             showModal: false,
             bank_number: '485-331-3463',
             wallet_number: '485-331-3463',
-            report: false,
             imageFile: ''
         }
     },
@@ -163,15 +137,6 @@ export default {
     },
 
     methods: {
-        closeModal() {
-            this.$emit('modal', this.showModal)
-            document.body.classList.remove('overflowHidden')
-        },
-
-        setModal(value) {
-            this.report = value
-        },
-
         copyBankNumber() {
             this.$copyText(this.bank_number).then((e) => {
                 this.$notify({
@@ -190,26 +155,9 @@ export default {
             })
         },
 
-        reportToggle() {
-            this.report = !this.report
-        },
-
-        copyWalletNumber() {
-            this.$copyText(this.bank_number).then((e) => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    text: 'คัดลอกเรียบร้อย !',
-                    duration: 1000
-                });
-            }).catch(e => {
-                this.$notify({
-                    group: 'foo',
-                    type: 'error',
-                    text: 'คัดลอกล้มเหลว !',
-                    duration: 1000
-                });
-            })
+        closeModal() {
+            this.$emit('modal', this.showModal)
+            document.body.classList.remove('overflowHidden')
         },
 
         onFileChange(e) {

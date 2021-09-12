@@ -21,7 +21,7 @@
                 </button>
 
                 <div class='absolute right-14 -mt-2 md:mt-0 z-40'>
-                    <button
+                    <button @click='lineLink'
                         class='fixed bg-gradient-to-b from-gold-1 to-gold-2 p-3 text-white rounded-l-md'>
                         <svg-icon
                             name='line'
@@ -50,7 +50,7 @@
             <div class='grid grid-cols-1 md:grid-cols-3 gap-4 py-3 md:py-7 text-white'>
                 <div v-for='(items,index) in service' :key='index'
                      class='text-center py-7 px-10 md:px-5 lg:px-10 xl:px-[6rem]'>
-                    <img :src='items.image' alt='' class='mx-auto'>
+                    <img :src='items.image' alt='' class='mx-auto w-[70px] md:w-auto'>
                     <div class='mt-5 text-xl font-medium'>{{ items.title }}</div>
                     <div class='mt-4 text-base'>{{ items.content }}</div>
                 </div>
@@ -77,9 +77,12 @@
                         </button>
                     </div>
                 </div>
-                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-7'>
+                <div class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-5 md:mt-7'>
                     <div v-for='(items,index) in game' :key='index' class='flex justify-center'>
-                        <img :src='items.image' alt='' class='w-full'>
+                        <div class='transform transition duration-300 ease-in-out hover:-translate-y-2'>
+                            <img :src='items.image' alt='' class='w-full'>
+                        </div>
+
                     </div>
                 </div>
                 <div class='md:hidden'>
@@ -115,15 +118,15 @@
                         </button>
                     </div>
                 </div>
-                <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-7'>
+                <div class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-5 md:mt-7'>
                     <div v-for='(items,index) in event' :key='index' class='flex justify-center'>
-                        <div class='w-full h-full bg-[#1A1A1A] rounded-md'>
+                        <div class='w-full h-full bg-[#1A1A1A] rounded-md transform transition duration-300 ease-in-out hover:-translate-y-2 hover:text-[#dca93d]'>
                             <img :src='items.image' alt='' class='w-full'>
                             <div class='py-3 px-3'>
-                                <div class='text-lg md:text-xl'>
+                                <div class='text-base md:text-xl mb-1'>
                                     {{ items.title }}
                                 </div>
-                                <div class='text-sm md:text-base font-light'>
+                                <div class='text-xs md:text-base font-light'>
                                     {{ items.subTitle }}
                                 </div>
                             </div>
@@ -133,7 +136,7 @@
                 <div class='md:hidden'>
                     <div class='flex justify-center mt-5'>
                         <button class='flex items-center bg-gradient-to-b from-gold-1 to-gold-2 py-1 px-6 rounded-full'>
-                            <span class='mr-2 text-sm'>ดูทั้งหมด</span>
+                            <span class='mr-2 text-xs md:text-sm'>ดูทั้งหมด</span>
                             <svg-icon
                                 name='ic_baseline-navigate-next'
                                 width='25'
@@ -225,6 +228,11 @@ export default {
                     image: require('../assets/image/slot-7.png'),
                     title: 'VIP เครดิตหมดกดรับที่นี',
                     subTitle: 'ไม่จำกัด รับแล้ว 48 ท่าน'
+                },
+                {
+                    image: require('../assets/image/slot-5.png'),
+                    title: 'VIP เครดิตหมดกดรับที่นี',
+                    subTitle: 'ไม่จำกัด รับแล้ว 48 ท่าน'
                 }
             ],
             game: [
@@ -233,6 +241,9 @@ export default {
                 },
                 {
                     image: require('../assets/image/slot-3.png')
+                },
+                {
+                    image: require('../assets/image/slot-4.png')
                 },
                 {
                     image: require('../assets/image/slot-4.png')
@@ -258,6 +269,10 @@ export default {
 
         alert() {
             alert('test')
+        },
+
+        lineLink() {
+            window.open(process.env.LINE_URL,'_blank')
         }
     }
 }

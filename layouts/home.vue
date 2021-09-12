@@ -24,7 +24,7 @@
                 </div>
             </header>
 
-            <div class='container mx-auto py-2 md:py-5 xl:py-9'>
+            <div class='container mx-auto py-2 md:py-5 xl:py-9 mb-10'>
                 <Nuxt />
             </div>
 
@@ -67,9 +67,6 @@
                     </div>
                 </div>
 
-                <div v-if='showModal' class='text-black'>
-                    <Contact @modal='setModal' />
-                </div>
             </footer>
         </div>
     </div>
@@ -77,11 +74,8 @@
 
 <script>
 
-import Contact from '../components/menuModal/contact'
-
 export default {
     name: 'home',
-    components: { Contact },
     data() {
         return {
             showModal: false,
@@ -103,12 +97,12 @@ export default {
                 },
                 {
                     name: 'สร้างรายได้',
-                    icon: 'fluent_people-money-24-filled'
+                    icon: 'fluent_people-money-24-filled',
+                    path: '/member/income'
                 },
                 {
                     name: 'ติดต่อแอดมิน',
-                    icon: 'clarity_administrator-solid',
-                    path: 'contact'
+                    icon: 'clarity_administrator-solid'
                 }
             ]
         }
@@ -132,11 +126,10 @@ export default {
         },
 
         menuFooter(value) {
-            if (value === 'contact') {
-                this.showModal = true
-                document.body.classList.add('overflowHidden')
-            } else {
+            if (value) {
                 this.$router.push(value)
+            } else {
+                window.open(process.env.LINE_URL,'_blank')
             }
         },
 
@@ -145,7 +138,8 @@ export default {
         },
 
         logout() {
-            this.$store.dispatch("logout")
+            // this.$store.dispatch('logout')
+            this.$router.push('/')
         }
     }
 }

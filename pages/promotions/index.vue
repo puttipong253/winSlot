@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div v-if='isLoading'>
+            <Loading />
+        </div>
         <div class='text-white text-2xl xl:text-4xl mt-5 md:mt-0 mb-2 md:mb-4'>
             โปรโมชั่น ของเรา
         </div>
@@ -7,19 +10,18 @@
             ร่วมสนุกกับกิจกรรมมากมาย พร้อมลุ้นรับรางวัลพิเศษ
         </div>
 
-        <div class='grid grid-cols-2 md:grid-cols-3 gap-5 mt-5 md:mt-10'>
-            <div v-for='(items,index) in events' :key='index' class='bg-gray-3 rounded-md p-3 '>
-                <div class=''>
-                    <div class='h-[8rem] md:h-[11rem] lg:h-[16rem]'>
-                        <img :src='items.image' alt='' class='w-full h-full'>
-                    </div>
-
-                    <div class='py-1 px-0 md:py-5 md:px-2 text-white '>
-                        <div class='mb-4'>
-                            {{items.title}}
+        <div class='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 mt-4'>
+            <div v-for='(items,index) in events' :key='index' class='bg-gray-3 rounded-md cursor-pointer'>
+                <div class='h-[8rem] md:h-[11rem] lg:h-[14rem]'>
+                    <img :src='items.image' alt='' class='w-full h-full'>
+                </div>
+                <div class='py-1 px-1 md:py-5 md:px-4'>
+                    <div class='text-sm md:text-base text-white '>
+                        <div class='mb-2'>
+                            {{ items.title }}
                         </div>
-                        <div class='text-sm font-light'>
-                            {{items.content}}
+                        <div class='text-xs md:text-sm font-light'>
+                            {{ items.content }}
                         </div>
                     </div>
                 </div>
@@ -34,6 +36,7 @@ export default {
     layout: 'default',
     data() {
         return {
+            isLoading: true,
             events: [
                 {
                     image: require('~/assets/image/promotion-1.png'),
@@ -97,7 +100,13 @@ export default {
                 },
             ]
         }
-    }
+    },
+
+    mounted() {
+        setTimeout(() => {
+            this.isLoading = false
+        }, 1000)
+    },
 }
 </script>
 

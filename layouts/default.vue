@@ -21,7 +21,7 @@
                              @click="$router.push('promotions')">
                             โปรโมชั่น
                         </div>
-                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block'>
+                        <div class='text-base text-white mr-7 cursor-pointer hidden md:block' @click='lineLink'>
                             ติดต่อเรา
                         </div>
                         <button
@@ -161,7 +161,7 @@
                     <div class='mr-7 cursor-pointer md:hidden' @click="$router.push('promotions')">
                         โปรโมชั่น
                     </div>
-                    <div class='cursor-pointer md:hidden'>
+                    <div class='cursor-pointer md:hidden' @click='lineLink'>
                         ติดต่อเรา
                     </div>
                 </div>
@@ -280,6 +280,10 @@ export default {
         login() {
             this.toggleModal = !this.toggleModal
             document.body.classList.add('overflowHidden')
+        },
+
+        lineLink() {
+            window.open(process.env.LINE_URL,'_blank')
         }
     }
 }

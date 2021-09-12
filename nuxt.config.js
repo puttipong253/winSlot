@@ -78,6 +78,7 @@ export default {
     env: {
         SITE_TITLE: process.env.SITE_TITLE,
         TOKEN_NAME: process.env.TOKEN_NAME,
-        API_URL: process.env.API_URL
+        API_URL: process.env.API_URL,
+        LINE_URL: process.env.LINE_URL,
     }
 }

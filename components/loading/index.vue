@@ -1,6 +1,6 @@
 <template>
-    <div class='absolute inset-0 z2 bg-opacity-[0.8] bg-black'>
-        <div class='flex items-center h-full justify-center'>
+    <div class='absolute inset-0 z2 bg-opacity-[0.95] bg-black'>
+        <div class='flex items-center h-screen justify-center'>
             <div class='lds-dual-ring'></div>
         </div>
     </div>

@@ -4,9 +4,9 @@
         <div
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
-                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] overflow md:w-[32rem] rounded-lg px-7 py-4'>
-                    <div class='flex justify-between items-center mb-6'>
-                        <div class='text-2xl flex items-center'>
+                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] w-[22rem] overflow md:w-[32rem] rounded-lg px-7 py-4'>
+                    <div class='flex justify-between items-center mb-4'>
+                        <div class='text-xl md:text-2xl flex items-center'>
                             <span class='text-white'>
                                 ถอนเงิน
                             </span>
@@ -61,9 +61,9 @@
                                 <div class=''>
                                     จำนวนเงิน
                                 </div>
-                                <div class='flex justify-end text-2xl '>
+                                <div class='flex justify-end text-xl md:text-2xl items-center'>
                                     <input type='text' v-model='price'
-                                           class='w-40 bg-[#242424] text-xl focus:outline-none text-right pt-1'
+                                           class='w-40 bg-[#242424] text-lg md:text-xl focus:outline-none text-right pt-1'
                                            placeholder='กรอกจำนวนเงิน'>
                                     <span class='ml-3'>บาท</span>
                                 </div>
@@ -80,11 +80,11 @@
                         <div class='flex gap-3 mt-4'>
                             <button
                                 @click="closeModal"
-                                class='bg-gray-4 px-5 py-2 text-white rounded-full w-full'>
+                                class='bg-gray-4 px-5 py-2 text-white rounded-full w-full text-sm md:text-base'>
                                 ยกเลิก
                             </button>
                             <button
-                                class='bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 text-white rounded-full w-full'>
+                                class='bg-gradient-to-b from-gold-1 to-gold-2 px-5 py-2 text-white rounded-full w-full text-sm md:text-base'>
                                 ยืนยัน
                             </button>
                         </div>

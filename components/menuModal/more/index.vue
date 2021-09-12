@@ -4,9 +4,9 @@
         <div
             class='animate-fade-ping fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center'>
             <div class='relative mx-auto'>
-                <div class='bg-[#1E1E1E] w-full md:w-[40rem] rounded-lg px-7 py-4'>
+                <div class='bg-[#1E1E1E] min-h-full max-h-[35rem] w-[22rem] overflow md:w-[32rem] rounded-lg px-7 py-4'>
                     <div class='flex justify-between items-center mb-6'>
-                        <div class='text-2xl flex items-center'>
+                        <div class='text-xl md:text-2xl flex items-center'>
                             <span class='text-white'>
                                 เพิ่มเติม
                             </span>
@@ -21,9 +21,9 @@
                     </div>
 
                     <div class='flex mb-3'>
-                        <div class='grid grid-cols-3 md:grid-cols-4 gap-8 w-full'>
+                        <div class='grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-5 w-full'>
                             <div v-for='(items,index) in more' :key='index'>
-                                <div @click="$router.push(items.path)" class='bg-[#242424] py-4 px-3 rounded-lg cursor-pointer shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-3'>
+                                <div @click="$router.push(items.path)" class='bg-[#242424] py-4 px-3 rounded-lg cursor-pointer shadow-lg transform transition duration-300 ease-in-out hover:-translate-y-3 border-2 border-[#242424] hover:border-gold-2'>
                                     <div class='flex justify-center'>
                                         <img :src='items.image' alt='' class='h-[45px]'>
                                     </div>
